@@ -1,5 +1,5 @@
 //font variables
-$general-font: 'Roboto', sans-serif;
+$general-font: 'Nunito', sans-serif;
 
 //colors variables map
 $identity-colors: 
@@ -13,7 +13,7 @@ $identity-colors:
 $txt-smaller: 0.8rem;
 $txt-small: 0.9rem;
 $txt-medium: 1rem;
-$txt-large: 1.3rem;
+$txt-large: 1.2rem;
 
 $txt-bold: bold;
 $txt-normal: normal;
@@ -46,6 +46,11 @@ $txt-sz-wght:
 
     medium-normal: (
         size: $txt-medium,
+        weight: $txt-normal,
+    ),
+
+    big-normal: (
+        size: $txt-large,
         weight: $txt-normal,
     ),
 

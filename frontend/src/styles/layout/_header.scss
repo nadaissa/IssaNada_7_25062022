@@ -1,9 +1,8 @@
 .header{
+    @include flex-row-center;
     height: 4rem;
     width: 100%;
     background-color: map-get($identity-colors, tertiary);
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
@@ -45,8 +44,8 @@
 }*/
 
 .header-right{
-    display: flex;
-    align-items: center;
+    @include flex-row-center;
+    @include link-state;
     justify-self: end;
     &__links{
         display: flex;
@@ -55,10 +54,10 @@
         width: 75%;        
     }
     &__link{
-        margin-right: 0.5rem;
+        margin-right: 2rem;
         cursor: pointer;
     }
-    @include link-state;
+    
 
 }
 
