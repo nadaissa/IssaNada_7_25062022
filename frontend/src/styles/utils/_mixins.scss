@@ -22,7 +22,7 @@
 @mixin link-state {
     a:link {
         color: map-get($text-colors, secondary);
-        @include txt-sz-wght(medium-bold);
+        @include txt-sz-wght(big-normal);
         text-decoration: none; 
     }
     & a:visited {
@@ -36,6 +36,12 @@
 @mixin flex-column-center{
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
+}
+
+@mixin flex-row-center {
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
 }
 

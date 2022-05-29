@@ -2,9 +2,13 @@
     height: 4rem;
     width: 100%;
     background-color: map-get($identity-colors, tertiary);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-row-center;
+    justify-content: center;
     position: fixed;
     bottom: 0;
+    @include link-state;
+    &__link{
+        margin-right: 2rem;
+        cursor: pointer;
+    }
 }
