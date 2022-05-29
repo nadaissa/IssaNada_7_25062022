@@ -1,0 +1,70 @@
+//font variables
+$general-font: 'Zilla Slab', sans-serif;
+
+//colors variables map
+$identity-colors: 
+(
+    primary: #FD2D01, 
+    secondary:#FFD7D7, 
+    tertiary:#4E5166
+);
+
+//texte variables and maps
+$txt-smaller: 0.8rem;
+$txt-small: 0.9rem;
+$txt-medium: 1rem;
+$txt-large: 1.3rem;
+
+$txt-bold: bold;
+$txt-normal: normal;
+
+$txt-sz-wght:
+(
+    smaller-normal: (
+        size: $txt-smaller,
+        weight:$txt-normal,
+    ),
+
+    smaller-bold: (
+        size: $txt-smaller,
+        weight: $txt-bold,
+    ),
+    small-normal: (
+        size: $txt-small,
+        weight: $txt-normal,
+    ),
+
+    small-bold: (
+        size: $txt-small,
+        weight: $txt-bold,
+    ),
+
+    medium-bold: (
+        size: $txt-medium,
+        weight: $txt-bold,
+    ),
+
+    medium-normal: (
+        size: $txt-medium,
+        weight: $txt-normal,
+    ),
+
+    big-bold : (
+        size: $txt-large,
+        weight: $txt-bold,
+    )
+);
+
+$text-colors: 
+(
+    primary: #000, 
+    secondary: #FFF,
+    tertiary: scale-color( map-get($identity-colors, tertiary), $lightness: -60%),
+);
+
+//Breakpoints
+$BREAKPOINT-DESK: "only screen and (min-width: 1280px)";
+$BREAKPOINT-TABLET-LAND: "only screen and (min-width: 975px)";
+$BREAKPOINT-TABLET: "only screen and (min-width: 600px)";
+$BREAKPOINT-MOBILE-LAND: "only screen and (min-width: 480px)";
+
