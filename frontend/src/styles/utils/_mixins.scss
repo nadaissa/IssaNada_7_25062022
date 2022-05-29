@@ -19,6 +19,20 @@
 
 }
 
+@mixin link-state {
+    a:link {
+        color: map-get($text-colors, secondary);
+        @include txt-sz-wght(medium-bold);
+        text-decoration: none; 
+    }
+    & a:visited {
+        color: map-get($text-colors, tertiary);
+    }
+    & a:hover {
+        color: map-get($text-colors, primary);
+    }
+}
+
 @mixin flex-column-center{
     display: flex;
     flex-flow: column nowrap;

@@ -1,5 +1,5 @@
 //font variables
-$general-font: 'Zilla Slab', sans-serif;
+$general-font: 'Roboto', sans-serif;
 
 //colors variables map
 $identity-colors: 
@@ -59,7 +59,7 @@ $text-colors:
 (
     primary: #000, 
     secondary: #FFF,
-    tertiary: scale-color( map-get($identity-colors, tertiary), $lightness: -60%),
+    tertiary: scale-color( map-get($identity-colors, secondary), $lightness: 20%),
 );
 
 //Breakpoints
