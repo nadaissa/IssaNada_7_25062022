@@ -1,0 +1,56 @@
+@mixin txt-sz-wght ($type) {
+    $text-style: map-get($txt-sz-wght, $type);
+    font-size: map-get($text-style,  size);
+    font-weight: map-get($text-style, weight);
+}
+
+@mixin common-button {
+    @include txt-sz-wght (small-normal);
+    background: linear-gradient(180deg, map-get($identity-colors, secondary), map-get($identity-colors, primary));
+    color: map-get($text-colors , secondary);
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgb(212, 206, 206);
+    padding: 12px 16px 12px 16px;
+    transition: all 800ms ease-in;
+    &:hover{
+        opacity: 0.85;
+        box-shadow: 5px 5px 5px rgb(112, 110, 110);
+    }
+
+}
+
+@mixin flex-column-center{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+@mixin border-radius-shadow{
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgb(212, 206, 206);
+    border: none;
+}
+
+@mixin desk-screen {
+    @media screen and (min-width: #{$BREAKPOINT-DESK}) {
+        @content;
+    }
+}
+
+@mixin tab-land-screen {
+    @media screen and (min-width: #{$BREAKPOINT-TABLET-LAND}) {
+        @content;
+    }
+}
+
+@mixin tab-screen {
+    @media screen and (min-width: #{$BREAKPOINT-TABLET}) {
+        @content;
+    }
+}
+
+@mixin mob-land-screen {
+    @media screen and (min-width: #{$BREAKPOINT-MOBILE-LAND}) {
+        @content;
+    }
+}

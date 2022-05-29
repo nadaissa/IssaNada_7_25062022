@@ -1,0 +1,74 @@
+.header{
+    height: 4rem;
+    width: 100%;
+    background-color: map-get($identity-colors, tertiary);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.header-left {
+    flex: 3;
+
+    &__logo {
+    height: 100%;
+    width: 75%;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    }
+}
+
+.header-center{
+    flex: 4;
+    &__searchBar{
+        width: 100%;
+        height: 1rem;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+    }
+    
+    &__icon{
+        color: map-get($identity-colors, secondary);
+        @include txt-sz-wght (medium-bold);
+        margin-right: 5px;
+
+    }
+
+    &__input{
+        width: 50%;
+    }
+
+
+}
+
+.header-right{
+    flex: 4;
+    display: flex;
+    align-items: center;
+    &__links{
+        display: flex;
+        align-items: center;
+    }
+    &__link{
+        margin-right: 10px;
+    }
+}
+
+.header-icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    &__icon{
+        margin-left: 10px;
+        align-self: flex-end;
+    }
+
+}
+
+.header-profil{
+    width: 32px;
+    height: 32px;
+    background-color: blue;
+}
