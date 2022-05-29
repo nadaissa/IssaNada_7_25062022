@@ -1,0 +1,10 @@
+.footer{
+    height: 4rem;
+    width: 100%;
+    background-color: map-get($identity-colors, tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+}

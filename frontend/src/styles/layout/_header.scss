@@ -4,22 +4,23 @@
     background-color: map-get($identity-colors, tertiary);
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
 }
 
 .header-left {
-    flex: 3;
-
+    height: 80%;
+    
     &__logo {
     height: 100%;
-    width: 75%;
+    width: 15rem;
     margin-left: 0.5rem;
     cursor: pointer;
     }
 }
 
-.header-center{
+/*.header-center{
     flex: 4;
     &__searchBar{
         width: 100%;
@@ -41,22 +42,27 @@
     }
 
 
-}
+}*/
 
 .header-right{
-    flex: 4;
     display: flex;
     align-items: center;
+    justify-self: end;
     &__links{
         display: flex;
         align-items: center;
+        height: 100%;
+        width: 75%;        
     }
     &__link{
-        margin-right: 10px;
+        margin-right: 0.5rem;
+        cursor: pointer;
     }
+    @include link-state;
+
 }
 
-.header-icons{
+/*.header-icons{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -70,5 +76,4 @@
 .header-profil{
     width: 32px;
     height: 32px;
-    background-color: blue;
-}
+}*/
