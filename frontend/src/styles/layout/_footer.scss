@@ -1,14 +1,22 @@
-.footer{
-    height: 4rem;
+footer{
+    @include flex-column-center;
     width: 100%;
     background-color: map-get($identity-colors, tertiary);
-    @include flex-row-center;
-    justify-content: center;
+    border-top: solid map-get($other-colors, primary-s);
     position: fixed;
     bottom: 0;
+}
+.footer-list{
+    height: 4rem;
+    width: 80%;
+    padding: 0;
+    @include flex-row-center;
+    justify-content: center;
+    
     @include link-state;
     &__link{
         margin-right: 2rem;
+        //flex-basis: 2rem;
         cursor: pointer;
     }
 }

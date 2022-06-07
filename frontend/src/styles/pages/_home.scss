@@ -1,3 +1,15 @@
-.main-content{
-    height: 100%;
+.home-parags{
+    width: 80%;
+    @include flex-column-center;
+    &__h1 {
+        color: map-get($identity-colors, primary);
+    }
+    &__h2 {
+        align-self: flex-start;
+        color: map-get($identity-colors, primary);
+      
+    }
+    &__p{
+        text-align: justify;
+    }
 }

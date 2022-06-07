@@ -5,10 +5,13 @@
 body {
     font-family: $general-font;
     margin: 0; 
-    padding: 0; 
-    outline: 0; 
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box; 
-    box-sizing: border-box;
+    padding: 0;      
+    background-color: map-get($other-colors, light);
+}
+
+.main-content-wrapper {
+    height: auto;
+    width: auto;
+    @include flex-column-center;
 }
 
