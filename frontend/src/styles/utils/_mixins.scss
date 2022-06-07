@@ -21,15 +21,15 @@
 
 @mixin link-state {
     a:link {
-        color: map-get($text-colors, secondary);
+        color: map-get($other-colors, light);
         @include txt-sz-wght(big-normal);
         text-decoration: none; 
     }
     & a:visited {
-        color: map-get($text-colors, tertiary);
+        color: map-get($identity-colors, primary);
     }
     & a:hover {
-        color: map-get($text-colors, primary);
+        color: map-get($other-colors, tertiary-s);
     }
 }
 

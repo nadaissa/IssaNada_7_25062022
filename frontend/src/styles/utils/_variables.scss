@@ -8,6 +8,14 @@ $identity-colors:
     secondary:#FFD7D7, 
     tertiary:#4E5166
 );
+$other-colors: 
+(
+    dark: #000, 
+    light: #FFF,
+    primary-s: scale-color( map-get($identity-colors, primary), $lightness: 10%),
+    secondary-s: scale-color( map-get($identity-colors, secondary), $lightness: -20%),
+    tertiary-s: scale-color( map-get($identity-colors, tertiary), $lightness: 50%)
+);
 
 //texte variables and maps
 $txt-smaller: 0.8rem;
@@ -60,12 +68,6 @@ $txt-sz-wght:
     )
 );
 
-$text-colors: 
-(
-    primary: #000, 
-    secondary: #FFF,
-    tertiary: scale-color( map-get($identity-colors, secondary), $lightness: 20%),
-);
 
 //Breakpoints
 $BREAKPOINT-DESK: "only screen and (min-width: 1280px)";
