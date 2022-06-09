@@ -1,9 +1,5 @@
-.home-parags{
-<<<<<<< HEAD
-    width: 80%;
-=======
+.ment-parags{
     width: auto;
->>>>>>> dev
     @include flex-column-center;
     &__h1 {
         color: map-get($identity-colors, primary);

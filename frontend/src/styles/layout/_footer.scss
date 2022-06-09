@@ -1,5 +1,9 @@
 footer{
     @include flex-column-center;
+<<<<<<< HEAD
+=======
+    //@include txt-sz-wght(big-bold);
+>>>>>>> dev
     width: 100%;
     background-color: map-get($identity-colors, tertiary);
     border-top: solid map-get($other-colors, primary-s);
@@ -9,6 +13,7 @@ footer{
 .footer-list{
     height: 4rem;
     width: 80%;
+<<<<<<< HEAD
     padding: 0;
     @include flex-row-center;
     justify-content: center;
@@ -16,6 +21,16 @@ footer{
     @include link-state;
     &__link{
         margin-right: 2rem;
+=======
+    padding: 0;    
+    @include flex-row-center;
+    justify-content: center;
+    gap: 1rem;
+    @include link-state;
+    
+    &__link{
+        //margin-right: 2rem;
+>>>>>>> dev
         //flex-basis: 2rem;
         cursor: pointer;
     }
