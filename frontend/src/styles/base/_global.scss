@@ -7,11 +7,14 @@ body {
     margin: 0; 
     padding: 0;      
     background-color: map-get($other-colors, light);
+    //display: flex;
+    //flex: column nowrap;
 }
 
 .main-content-wrapper {
     height: auto;
     width: auto;
+    padding: 0rem 2rem 5rem 2rem;
     @include flex-column-center;
 }
 

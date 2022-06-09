@@ -1,5 +1,8 @@
 header {
     @include flex-column-center;
+    //display: flex;
+    //flex: column nowrap;
+    //border: solid black;
     width: 100%;
     padding: 0;
     background-color: map-get($identity-colors, tertiary);
@@ -10,7 +13,10 @@ header {
 
 .header-nav {
     @include flex-row-center;
+    //border: solid blue;
+    display: flex;
     justify-content: space-between;
+    //gap: 5rem;
     height: 4rem;
     width: 100%;
     margin: 0;
@@ -20,10 +26,10 @@ header {
 
 .header-left {
     height: 100%;
-      
+    //flex-grow: 1;  
     &__logo {
     height: 100%;
-    width: 15rem;
+    width: 11rem;
     margin-left: 0.5rem;
     cursor: pointer;
     }
@@ -56,15 +62,22 @@ header {
 .header-right{
     @include flex-row-center;
     @include link-state;
-    justify-self: flex-end;
+    //border: solid pink;
+    padding-right: 0.4rem;
+    margin-right: 0.4rem;
+    //flex-grow: 4;
+    //justify-self: flex-end;
       
     &__links{
-        @include flex-row-center;
+        //@include flex-row-center;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
         height: 100%;
         width: 100%;       
     }
     &__link{
-        margin-right: 2rem;
+        //margin-right: 2rem;
         cursor: pointer;
     }
     

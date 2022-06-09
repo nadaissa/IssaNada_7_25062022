@@ -1,5 +1,6 @@
 footer{
     @include flex-column-center;
+    //@include txt-sz-wght(big-bold);
     width: 100%;
     background-color: map-get($identity-colors, tertiary);
     border-top: solid map-get($other-colors, primary-s);
@@ -9,13 +10,14 @@ footer{
 .footer-list{
     height: 4rem;
     width: 80%;
-    padding: 0;
+    padding: 0;    
     @include flex-row-center;
     justify-content: center;
-    
+    gap: 1rem;
     @include link-state;
+    
     &__link{
-        margin-right: 2rem;
+        //margin-right: 2rem;
         //flex-basis: 2rem;
         cursor: pointer;
     }
