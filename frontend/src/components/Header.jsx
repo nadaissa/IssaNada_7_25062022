@@ -22,10 +22,10 @@ function Header() {
                         <Link className= "header-right__link" to="/" aria-label="icone d'accueil">
                             <FontAwesomeIcon icon={faHouse} className="header-right__icon"/>
                         </Link>
-                        <Link className= "header-right__link" to="/Login" aria-label="connexion">
+                        <Link className= "header-right__link" to="/Signup" aria-label="connexion">
                             <FontAwesomeIcon icon={faUserPlus} className="header-right__icon"/>
                         </Link>
-                        <Link className= "header-right__link" to="/Signup" aria-label="inscription">
+                        <Link className= "header-right__link" to="/Login" aria-label="inscription">
                             <FontAwesomeIcon icon={faArrowRightToBracket} className="header-right__icon"/>
                         </Link>
                     </div>
