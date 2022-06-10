@@ -1,15 +1,11 @@
 .home-parags{
     width: auto;
     @include flex-column-center;
-    &__h1 {
-        color: map-get($identity-colors, primary);
-    }
+    /*display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;*/
     &__h2 {
         align-self: flex-start;
-        color: map-get($identity-colors, primary);
-      
-    }
-    &__p{
-        text-align: justify;
     }
 }

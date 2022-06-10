@@ -18,3 +18,11 @@ body {
     @include flex-column-center;
 }
 
+h1, h2{
+    @include headings-effect;
+}
+
+p{
+    text-align: justify;
+}
+

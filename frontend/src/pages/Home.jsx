@@ -6,7 +6,7 @@ function Home() {
     return (
        <div className="main-content-wrapper" aria-label="contenu principal">
            <div className="home-parags" aria-label="présentation de la plateforme Groupomania">
-               <h1 className="home-parags__h1" aria-label="titre de bienvenue">Bienvenue à notre plateforme!</h1>
+               <h1 className="home-parags__h1" aria-label="titre de bienvenue">Bienvenue!</h1>
                <h2 className="home-parags__h2">Lorem ipsum 1</h2>
                <p className="home-parags__p">
                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget egestas nibh. 

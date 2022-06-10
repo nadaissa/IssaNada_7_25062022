@@ -1,15 +1,23 @@
 .contact-area{
     width: auto;
     @include flex-column-center;
-    &__h1 {
-        color: map-get($identity-colors, primary);
+    
+    &__form{
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
     }
-    &__h2 {
-        align-self: flex-start;
-        color: map-get($identity-colors, primary);
-      
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
-    &__p{
-        text-align: justify;
+
+    &__label{
+        @include txt-sz-wght(big-normal);
+    }
+    &__btn{
+        @include common-button;
+        @include link-state;
     }
 }
