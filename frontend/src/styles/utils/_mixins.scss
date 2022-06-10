@@ -11,9 +11,9 @@
 
 @mixin common-button {
     @include txt-sz-wght (big-normal);
-    border: solid map-get($identity-colors, primary);
-    color: map-get($identity-colors , primary);
-    background-color: map-get($identity-colors, secondary);
+    border: none;
+    color: map-get($other-colors , light);
+    background-color: map-get($identity-colors, tertiary);
     border-radius: 10rem;
     padding: 0.4rem;
     &:hover{
@@ -21,6 +21,33 @@
         box-shadow: 5px 5px 5px rgb(112, 110, 110);
     }
 
+}
+
+@mixin common-form{
+    width: auto;
+    @include flex-column-center;
+    
+    &__form{
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    &__label{
+        @include txt-sz-wght(big-normal);
+    }
+    &__input{
+        padding: 0.5rem;
+    }
+    &__btn{
+        @include common-button;
+        @include link-state;
+        margin: 0.5rem;
+    }
 }
 
 @mixin link-state {
