@@ -82,7 +82,7 @@
     border: none;
 }
 
-@mixin desk-screen {
+/*@mixin desk-screen {
     @media screen and (min-width: #{$BREAKPOINT-DESK}) {
         @content;
     }
@@ -105,3 +105,10 @@
         @content;
     }
 }
+
+@mixin darkMode {
+    @media(prefers-color-scheme: dark) {
+        @content;
+      }
+    }
+*/

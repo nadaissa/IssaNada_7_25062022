@@ -59,6 +59,7 @@ header {
 
 }*/
 
+
 .header-right{
     @include flex-row-center;
     @include link-state;
@@ -80,9 +81,13 @@ header {
         //margin-right: 2rem;
         cursor: pointer;
     }
-    
+    &__switch{
+        color: map-get($identity-colors, primary);
+        @include txt-sz-wght(big-normal);
+    }
 
 }
+
 
 /*.header-icons{
     display: flex;

@@ -16,7 +16,8 @@ function Login() {
                         <input className="login-area__input" id="password" name="password" type="password" size="30" />
                     </div>
                     <div className="login-area__btns login-area__group">
-                        <button className="login-area__btn submit-btn" type="submit">Connexion</button>
+                        <button className="login-area__btn connection-btn" type="submit">Connexion</button>
+                        <button className="login-area__btn signup-btn" type="submit">Inscription</button>
                         <button className="login-area__btn">
                             <Link className="home-btn" to="/" aria-label="retour à l'accueil">Retournez à l'accueil</Link>    
                         </button>
