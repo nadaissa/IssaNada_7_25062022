@@ -74,8 +74,8 @@ $txt-sz-wght:
 
 
 //Breakpoints
-$BREAKPOINT-DESK: "only screen and (min-width: 1280px)";
-$BREAKPOINT-TABLET-LAND: "only screen and (min-width: 975px)";
-$BREAKPOINT-TABLET: "only screen and (min-width: 600px)";
-$BREAKPOINT-MOBILE-LAND: "only screen and (min-width: 480px)";
+$BREAKPOINT-DESK: 1280px;
+$BREAKPOINT-TABLET-LAND: 975px;
+$BREAKPOINT-TABLET: 600px;
+$BREAKPOINT-MOBILE-LAND: 480px;
 

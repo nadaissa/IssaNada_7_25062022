@@ -75,15 +75,32 @@ header {
         justify-content: space-evenly;
         gap: 1rem;
         height: 100%;
-        width: 100%;       
+        width: 100%;
+        /*@include mob-land-screen {
+            flex-direction: column;
+            border: solid pink;
+        } */    
     }
     &__link{
         //margin-right: 2rem;
         cursor: pointer;
+        
     }
     &__switch{
         color: map-get($identity-colors, primary);
         @include txt-sz-wght(big-normal);
+    }
+
+    &__btn {
+        background: transparent;
+        border: none;
+        display: none;
+        color: map-get($identity-colors, primary);
+        @include txt-sz-wght(big-normal);
+        /*@include mob-land-screen {
+            display: block;
+        }*/
+    
     }
 
 }
