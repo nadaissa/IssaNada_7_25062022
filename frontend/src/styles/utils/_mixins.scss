@@ -50,10 +50,14 @@
     }
 }
 
+@mixin icons {
+    color: map-get($other-colors, light);
+    @include txt-sz-wght(big-normal);
+}
+
 @mixin link-state {
     a:link {
-        color: map-get($other-colors, light);
-        @include txt-sz-wght(big-normal);
+        @include icons;
         text-decoration: none; 
     }
     & a:visited {

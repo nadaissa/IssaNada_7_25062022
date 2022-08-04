@@ -5,10 +5,12 @@ header {
     //border: solid black;
     width: 100%;
     padding: 0;
+    margin-bottom: 1rem;
     background-color: map-get($identity-colors, tertiary);
     border-bottom: solid map-get($other-colors, primary-s);
     position: sticky;
     top: 0;
+
 }
 
 .header-nav {
@@ -76,31 +78,39 @@ header {
         gap: 1rem;
         height: 100%;
         width: 100%;
-        /*@include mob-land-screen {
-            flex-direction: column;
-            border: solid pink;
-        } */    
+        @include mob-land-screen {
+            @include flex-column-center
+            margin-top: 15rem;
+            height: 15rem;
+            width: 5rem;
+            padding: 1rem;
+            background-color: map-get($identity-colors, tertiary);
+            visibility: hidden;            
+        }  
     }
+    &__links-show{
+        @include mob-land-screen {
+        visibility: visible;
+       }
+    }
+    
     &__link{
         //margin-right: 2rem;
         cursor: pointer;
-        
     }
+    
     &__switch{
-        color: map-get($identity-colors, primary);
-        @include txt-sz-wght(big-normal);
+        @include icons;
     }
 
     &__btn {
         background: transparent;
         border: none;
+        @include icons;
         display: none;
-        color: map-get($identity-colors, primary);
-        @include txt-sz-wght(big-normal);
-        /*@include mob-land-screen {
-            display: block;
-        }*/
-    
+        @include mob-land-screen {
+            @include flex-row-center;    
+        }
     }
 
 }

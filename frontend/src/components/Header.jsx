@@ -2,9 +2,15 @@ import React from "react";
 import logo from "../assets/images/icon-left-font-monochrome-white.svg";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowRightToBracket, faBars, faHouse, faLightbulb /*faUserPlus*/} from '@fortawesome/free-solid-svg-icons';
+import {faArrowRightToBracket, faBars, faHouse, /*faUserPlus*/
+faSun} from '@fortawesome/free-solid-svg-icons';
+import {useState} from "react";
 
 function Header() {
+    const [showLinks, setShowLinks] = useState(false);
+    const handleShowLinks = () => {
+        setShowLinks(!showLinks);
+    };
     return (
         <header className="header">
             <nav className="header-nav" aria-label="navigation en-tête">
@@ -22,7 +28,7 @@ function Header() {
                 </div>*/}
                 
                 <div className="header-right">
-                    <div className="header-right__links">
+                    <div className={`header-right__links ${showLinks ? "header-right__links-show" : "header-right__links-hide"}`}>
                         <Link className= "header-right__link" to="/" aria-label="icone d'accueil">
                             <FontAwesomeIcon icon={faHouse} className="header-right__icon"/>
                         </Link>
@@ -30,12 +36,12 @@ function Header() {
                             <FontAwesomeIcon icon={faArrowRightToBracket} className="header-right__icon"/>
                         </Link>
                         <div className="header-right__switch header-right__link">
-                            <FontAwesomeIcon icon={faLightbulb} className="header-right__icon"/>
-                        </div>
-                        <button className="header-right__btn">
-                            <FontAwesomeIcon icon={faBars} className="header-right__burger"/>
-                        </button>
+                            <FontAwesomeIcon icon={faSun} className="header-right__icon"/>
+                        </div>                       
                     </div>
+                    <button className="header-right__btn" onClick={handleShowLinks}>
+                            <FontAwesomeIcon icon={faBars} className="header-right__burger"/>
+                    </button> 
                     
                     {/*<div className="header-icons">
                         <FontAwesomeIcon icon={faUser} className="header-icons__icon"/>
