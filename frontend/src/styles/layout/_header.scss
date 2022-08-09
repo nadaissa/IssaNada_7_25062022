@@ -9,14 +9,17 @@ header {
     background-color: map-get($identity-colors, tertiary);
     border-bottom: solid map-get($other-colors, primary-s);
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
+    //overflow: hidden;
+
 
 }
 
 .header-nav {
     @include flex-row-center;
     //border: solid blue;
-    display: flex;
+    //display: flex;
     justify-content: space-between;
     //gap: 5rem;
     height: 4rem;

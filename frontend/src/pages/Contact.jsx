@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 
 
@@ -23,9 +22,6 @@ function Contact() {
                     </div>
                     <div className="contact-area__btns contact-area__group">
                         <button className="contact-area__btn submit-btn" type="submit">Envoyez</button>
-                        <button className="contact-area__btn">
-                            <Link className="home-btn" to="/" aria-label="retour à l'accueil">Retournez à l'accueil</Link>    
-                        </button>
                     </div>
                 </form>
             </div>

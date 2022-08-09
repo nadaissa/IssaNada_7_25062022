@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Login() {
     return (
@@ -18,9 +17,6 @@ function Login() {
                     <div className="login-area__btns login-area__group">
                         <button className="login-area__btn connection-btn" type="submit">Connexion</button>
                         <button className="login-area__btn signup-btn" type="submit">Inscription</button>
-                        <button className="login-area__btn">
-                            <Link className="home-btn" to="/" aria-label="retour à l'accueil">Retournez à l'accueil</Link>    
-                        </button>
                     </div>
                 </form>
             </div>

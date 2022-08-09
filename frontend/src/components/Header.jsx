@@ -39,7 +39,7 @@ function Header() {
                             <FontAwesomeIcon icon={faSun} className="header-right__icon"/>
                         </div>                       
                     </div>
-                    <button className="header-right__btn" onClick={handleShowLinks}>
+                    <button className="header-right__btn" onClick={handleShowLinks} aria-label="burger-menu">
                             <FontAwesomeIcon icon={faBars} className="header-right__burger"/>
                     </button> 
                     
