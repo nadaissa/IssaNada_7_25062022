@@ -81,7 +81,7 @@ header {
         gap: 1rem;
         height: 100%;
         width: 100%;
-        @include mob-land-screen {
+        /*@include mob-land-screen {
             @include flex-column-center
             margin-top: 15rem;
             height: 15rem;
@@ -89,13 +89,13 @@ header {
             padding: 1rem;
             background-color: map-get($identity-colors, tertiary);
             visibility: hidden;            
-        }  
+        }*/ 
     }
-    &__links-show{
+    /*&__links-show{
         @include mob-land-screen {
         visibility: visible;
        }
-    }
+    }*/
     
     &__link{
         //margin-right: 2rem;
