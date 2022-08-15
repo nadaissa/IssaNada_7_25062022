@@ -1,6 +1,7 @@
 //general imports
 const http = require('http');
 const app = require('./app');
+const config = require('./config/config.js');
 
 //port function
 const normalizePort = val => {
@@ -14,10 +15,11 @@ const normalizePort = val => {
     return false;
 };
 
-const port = normalizePort(process.env.PORT || '3001');
+//listening to environement variables
+const port = normalizePort(config.PORT || '3001');
 app.set('port', port);
 
-//different errors handling function
+//errors handling function
 const errorHandler = error => {
     if (error.syscall !== 'listen') {
         throw error;
