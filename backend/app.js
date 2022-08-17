@@ -1,6 +1,7 @@
 //general imports
 const express = require('express');
 const path = require('path');
+
 //const helmet = require('helmet');
 
 //importing api routers
@@ -8,6 +9,21 @@ const path = require('path');
 const postsRoutes = require('./routes/posts');
 const likesRoutes = require('./routes/likes');*/
 
+//lines to be put in the controllers files once routes are initiated in app
+const db = require("./models");
+//database sync test
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
+
+  //database query tests
+  /*db.sequelize.query("SELECT * FROM `posts`").then( e => {
+    console.log(e);
+  });*/
 
 
 

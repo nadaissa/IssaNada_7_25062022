@@ -1,7 +1,8 @@
 //general imports
 const http = require('http');
 const app = require('./app');
-const config = require('./config/config.js');
+//database configuration import
+const dbConfig = require('./config/dbConfig.js');
 
 //port function
 const normalizePort = val => {
@@ -16,7 +17,7 @@ const normalizePort = val => {
 };
 
 //listening to environement variables
-const port = normalizePort(config.PORT || '3001');
+const port = normalizePort(dbConfig.PORT || '3001');
 app.set('port', port);
 
 //errors handling function
