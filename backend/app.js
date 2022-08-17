@@ -5,21 +5,28 @@ const path = require('path');
 //const helmet = require('helmet');
 
 //importing api routers
-/*const usersRoutes = require('./routes/users');
+const usersRoutes = require('./routes/users');
 const postsRoutes = require('./routes/posts');
-const likesRoutes = require('./routes/likes');*/
+const likesRoutes = require('./routes/likes');
 
 //lines to be put in the controllers files once routes are initiated in app
 const db = require("./models");
 //database sync test
-db.sequelize.sync()
+/*db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);
+  });*/
+  db.sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
   });
-
   //database query tests
   /*db.sequelize.query("SELECT * FROM `posts`").then( e => {
     console.log(e);
@@ -45,10 +52,10 @@ app.use((req, res, next) => {
   //app.use(helmet());
 
 //indication to express for static handling of images ressources 
-//app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is the target folder
+app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is the target folder
 
 //api routes
-//app.use('/api/auth', userRoutes);
+//app.use('/api/auth', usersRoutes);
 //app.use('/api/posts', postsRoutes);
 //app.use('/api/likes', likesRoutes);
 

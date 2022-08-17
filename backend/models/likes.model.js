@@ -1,15 +1,47 @@
+'use strict';
+
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, Sequelize) => {
-    const Like = sequelize.define("like", {
+  class Like extends Model{
+    static associate(models){
+      Like.belongsTo(models.User, {foreignKey: 'userId'}, { onDelete: 'cascade', hooks: true })
+      Like.belongsTo(models.Post, {foreignKey: 'postId'}, { onDelete: 'cascade', hooks: true })
+    }
+
+  };  
+
+  Like.init({
       userId : {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
 
       postId : {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
-      },       
+      },
+    },
+      {
+        sequelize,
+        modelName: 'Like',  
       
     });
     return Like;
   };
+
+
+  /*
+  const Like = sequelize.define("like", {
+      userId : {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+
+      postId : {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },       
+      
+    });
+  */
