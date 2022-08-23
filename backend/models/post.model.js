@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
   };
     
   Post.init({
-      userId : {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false
       },      

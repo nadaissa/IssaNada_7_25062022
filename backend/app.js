@@ -6,8 +6,8 @@ const path = require('path');
 
 //importing api routers
 const usersRoutes = require('./routes/users');
-const postsRoutes = require('./routes/posts');
-const likesRoutes = require('./routes/likes');
+//const postsRoutes = require('./routes/posts');
+//const likesRoutes = require('./routes/likes');
 
 //lines to be put in the controllers files once routes are initiated in app
 const db = require("./models");
@@ -28,9 +28,13 @@ const db = require("./models");
     console.error('Unable to connect to the database:', err);
   });
   //database query tests
-  /*db.sequelize.query("SELECT * FROM `posts`").then( e => {
-    console.log(e);
-  });*/
+  //db.sequelize.query("SELECT * FROM `posts`").then( e => {
+    //console.log(e);
+  //});
+  //db.sequelize.query(
+    //"INSERT INTO `users` (`email`, `password`, `first_name`, `last_name`, `admin`) VALUES ('testmail@gmail.com', 'testpass12&', 'test_n', 'test_l', true)").then( e => {
+    //console.log(e);
+  //});
 
 
 
@@ -55,7 +59,7 @@ app.use((req, res, next) => {
 app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is the target folder
 
 //api routes
-//app.use('/api/auth', usersRoutes);
+app.use('/api/auth', usersRoutes);
 //app.use('/api/posts', postsRoutes);
 //app.use('/api/likes', likesRoutes);
 
