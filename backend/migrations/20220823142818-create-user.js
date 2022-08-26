@@ -43,8 +43,8 @@ module.exports = {
           }          
         }
       },
-      bio :{
-        type: Sequelize.TEXT,
+      bio: {
+        type: Sequelize.TEXT(255),
         allowNull: true
       },
       picture: {
@@ -54,8 +54,17 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false
-      }
-      
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      }      
     });
     
   },

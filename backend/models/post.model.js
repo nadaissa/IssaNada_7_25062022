@@ -26,11 +26,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING(255),
         allowNull: true
       },
-      creationDate: {
+      /*creationDate: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW, 
         allowNull: false       
-      },
+      },*/
     },
       {
         sequelize,
@@ -40,22 +40,4 @@ module.exports = (sequelize, Sequelize) => {
     return Post;
   };
 
- /*const Post = sequelize.define("post", {
-      userId : {
-        type: Sequelize.STRING,
-        allowNull: false
-      },      
-      content: {
-        type: Sequelize.TEXT,
-        allowNull: true
-      },
-      media: {
-        type: Sequelize.STRING,
-        allowNull: true
-      },
-      creationDate: {
-        type: Sequelize.DATE,
-        
-      }
-    });
- */
+

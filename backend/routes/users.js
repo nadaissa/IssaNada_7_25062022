@@ -8,7 +8,6 @@ const emailCheck = require('../middleware/emailCheck');
 const router = express.Router();
 router.post('/signup', emailCheck, passCheck, userCtrl.signup);
 router.post('/login', userCtrl.login);
-router.get('/', userCtrl.getAllUsers);
 
 
 //router export

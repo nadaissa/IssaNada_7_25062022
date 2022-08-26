@@ -45,12 +45,13 @@ module.exports = (sequelize, Sequelize) => {
           }          
         }
       },
-      bio :{
-        type: Sequelize.TEXT,
+      bio: {
+        type: Sequelize.TEXT(255),
         allowNull: true
       },
       picture: {
         type: Sequelize.STRING(255),
+        allowNull: true
       },
       admin: {
         type: Sequelize.BOOLEAN,
@@ -68,17 +69,3 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-  /*const User = sequelize.define("user", {
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      admin: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-      }
-    });*/

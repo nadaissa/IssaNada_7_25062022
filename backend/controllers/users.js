@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //database configurations import
-const db = require("../models");
+const db = require("../models/index");
 
 //file system import to delete or modify users
 //const fs = require('fs');
 
+//Model import
 const { User } = db.sequelize.models;
 
 //signup function export to be used in routes file
@@ -19,7 +20,12 @@ exports.signup = (req, res, next) => {
     .then(hash => {
         User.create({
             email : req.body.email,
-            password: hash
+            password: hash,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            bio: req.body.bio,
+            picture: req.body.picture
+
         })
         //saving the user in the DB
         .then(user =>{
@@ -65,14 +71,6 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
 };
-
-//function for showing all users
-exports.getAllUsers = (req, res, next) => {
-    User.find()
-        .then(user => res.status(200).json({ user }))
-        .catch(error => res.status(404).json({ error }));
-};
-
 
 
 

@@ -31,17 +31,4 @@ module.exports = (sequelize, Sequelize) => {
   };
 
 
-  /*
-  const Like = sequelize.define("like", {
-      userId : {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
 
-      postId : {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },       
-      
-    });
-  */
