@@ -24,17 +24,20 @@ exports.signup = (req, res, next) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             bio: req.body.bio,
-            picture: req.body.picture
+            picture: req.body.picture,
+            admin: false
 
         })
         //saving the user in the DB
         .then(user =>{
             res.status(201).json({ 
+                message: "Utilisateur créé!",
                 token: jwt.sign(
-                    { userId: user.id, admin: user.admin },
-                    `${process.env.SECRET_TOKEN}`,
+                    { userId: user.id },
+                    process.env.SECRET_TOKEN,
                     { expiresIn: '24h' }
                     )
+                    
             })
         })
             .catch((error) => res.status(400).json({ error }));
@@ -45,7 +48,7 @@ exports.signup = (req, res, next) => {
 //login function export to be used in routes file
 exports.login = (req, res, next) => {
   
-    User.findOne({ email : req.body.email })
+    User.findOne({ where: { email : req.body.email } })
         .then((user) => {
             if(!user) {
                 return res.status(401).json({message : "Utilisateur non trouvé!"});
@@ -58,11 +61,15 @@ exports.login = (req, res, next) => {
                     }
                     else {
                     res.status(200).json({
+                        message: "Vous êtes connecté(e)!",
+                        firstName: user.firstName,
+                        userId: user.id,
                         token: jwt.sign(
                         { userId: user.id, admin: user.admin },
-                        `${process.env.SECRET_TOKEN}`,
+                        process.env.SECRET_TOKEN,
                         { expiresIn: '24h' }
-                    )
+                    ),
+                    admin: user.admin
                     });
                     }
                 })

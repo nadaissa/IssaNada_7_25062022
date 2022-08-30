@@ -9,7 +9,7 @@ module.exports = (req,res, next) => {
         //requesting and decoding the token from headers
         const token = req.headers.authorization.split(' ')[1];
         req.token = jwt.verify(token, `${process.env.SECRET_TOKEN}`);
-        if (req.body.userId && req.body.userId !== req.token.userId) {
+        if (req.body.userId && req.query.userId !== req.token.userId) {
             throw 'User ID non valable !'
         } else {
             next();
@@ -18,3 +18,4 @@ module.exports = (req,res, next) => {
         res.status(401).json({ error: error | 'Requête non authentifiée!' })
     }
 };
+

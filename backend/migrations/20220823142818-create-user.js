@@ -23,6 +23,7 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING(255),
+        unique: false,
         allowNull: false
       },
       firstName: {
