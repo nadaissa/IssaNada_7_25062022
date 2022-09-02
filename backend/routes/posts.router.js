@@ -1,8 +1,8 @@
 //general imports, controllers and middlewares
 const express = require('express');
-const postsCtrl = require("../controllers/posts");
-const auth = require('../middleware/auth');
-const multer = require('../middleware/multer-config');
+const postsCtrl = require("../controllers/posts.controllers");
+const auth = require('../middleware/auth.middleware');
+const multer = require('../middleware/multer-config.middleware');
 
 
 //router creation, router methods for finding, creating and modifying posts

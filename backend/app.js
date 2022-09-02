@@ -5,9 +5,9 @@ const path = require('path');
 //const helmet = require('helmet');
 
 //importing api routers
-const usersRoutes = require('./routes/users');
-const postsRoutes = require('./routes/posts');
-const likesRoutes = require('./routes/likes');
+const usersRoutes = require('./routes/users.router');
+const postsRoutes = require('./routes/posts.router');
+const likesRoutes = require('./routes/likes.router');
 
 //lines to be put in the controllers files once routes are initiated in app
 const db = require("./models");

@@ -1,9 +1,9 @@
 //general imports, controllers and middlewares
 const express = require('express');
-const userCtrl = require('../controllers/users');
-const passCheck = require('../middleware/passCheck');
-const emailCheck = require('../middleware/emailCheck');
-const auth = require('../middleware/auth');
+const userCtrl = require('../controllers/users.controllers');
+const passCheck = require('../middleware/password.middleware');
+const emailCheck = require('../middleware/email.middleware');
+const auth = require('../middleware/auth.middleware');
 
 //router creation, router methods for signing and loging
 const router = express.Router();

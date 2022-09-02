@@ -1,7 +1,7 @@
 //general imports, controllers and middlewares
 const express = require('express');
-const likesCtrl = require("../controllers/likes");
-const auth = require('../middleware/auth');
+const likesCtrl = require("../controllers/likes.controllers");
+const auth = require('../middleware/auth.middleware');
 
 //router creation
 const router = express.Router();
