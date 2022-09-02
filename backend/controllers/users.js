@@ -79,6 +79,26 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
+//display user export 
+exports.getOneUser = (req, res, next) => {
+    User.findByPk(req.params.id)
+      .then(user => res.status(200).json({
+            picture: user.picture,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            bio: user.bio,
+            id: user.id,
+        }))
+      .catch(error => res.status(404).json({ error }));
+    }
 
+    exports.getAllUsers = (req, res, next) => {
+        //defining the chronological order of display (according to creation date from recent to old)
+        
+          User.findAll()
+              .then(user => res.status(200).json(user))
+              .catch(error => res.status(400).json({ error }));
+          };
 
+      
 

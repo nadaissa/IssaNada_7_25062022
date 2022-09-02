@@ -7,11 +7,11 @@ const path = require('path');
 //importing api routers
 const usersRoutes = require('./routes/users');
 const postsRoutes = require('./routes/posts');
-//const likesRoutes = require('./routes/likes');
+const likesRoutes = require('./routes/likes');
 
 //lines to be put in the controllers files once routes are initiated in app
 const db = require("./models");
-const passCheck = require('./middleware/passCheck');
+
 //database sync test
 /*db.sequelize.sync()
   .then(() => {
@@ -61,8 +61,9 @@ app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is
 
 //api routes
 app.use('/api/auth', usersRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/api/posts', postsRoutes);
-//app.use('/api/likes', likesRoutes);
+app.use('/api/likes', likesRoutes);
 
 
 

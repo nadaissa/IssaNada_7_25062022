@@ -5,7 +5,6 @@ const db = require("../models/index");
 const fs = require('fs');
 //Model import
 const { Post } = db.sequelize.models;
-
 //functions for post handeling, the identification by the userId token is imposed for deleting and modifying
 //post creation function export to be used in routes file
 exports.createPost = async (req, res, next) => {
@@ -78,17 +77,11 @@ exports.getOnePost = (req, res, next) => {
 //all posts search function export to be used in routes file
 
 exports.getAllPosts = (req, res, next) => {
-
-    //defining the chronological order of display (according to user id from recent to old)
-    const conditions = { include: db.User, order: [['id', 'DESC']]};
-    if(req.query.userId){
-        conditions.where = {
-            userId: parseInt(req.query.userId)
-        }
-    }; 
-    
-    
-    Post.findAll()
+  //defining the chronological order of display (according to creation date from recent to old)
+  
+    Post.findAll({
+      order: [['createdAt', 'DESC']]
+    })
         .then(post => res.status(200).json(post))
         .catch(error => res.status(400).json({ error }));
     };
