@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 
-//const helmet = require('helmet');
+const helmet = require('helmet');
 
 //importing api routers
 const usersRoutes = require('./routes/users.router');
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
   
   //JSON parse method (express version >4.16 so no need to bodyparser)
   app.use(express.json());
-  //app.use(helmet());
+  app.use(helmet());
 
 //indication to express for static handling of images ressources 
 app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is the target folder

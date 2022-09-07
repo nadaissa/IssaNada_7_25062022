@@ -79,26 +79,76 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-//display user export 
-exports.getOneUser = (req, res, next) => {
-    User.findByPk(req.params.id)
-      .then(user => res.status(200).json({
-            picture: user.picture,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            bio: user.bio,
-            id: user.id,
-        }))
-      .catch(error => res.status(404).json({ error }));
-    }
 
-    exports.getAllUsers = (req, res, next) => {
-        //defining the chronological order of display (according to creation date from recent to old)
-        
-          User.findAll()
-              .then(user => res.status(200).json(user))
-              .catch(error => res.status(400).json({ error }));
-          };
+//display all users export
+exports.getAllUsers = (req, res, next) => {
+    User.findAll({
+        //defining the order of display (according to last name from A to Z)
+        order: [['lastName', 'ASC']],
+        attributes: {
+            exclude: [
+                'password',
+                'email'
+            ]
+        },
+        })
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(400).json({ error }));
+};
+
+//display specific user export - find by primary key and display only non-sensitive infos 
+exports.getOneUser = (req, res, next) => {
+    User.findByPk(
+        req.params.id,
+        {
+            attributes: {
+                exclude: [
+                    'password',
+                    'email'
+                ]
+            }
+        }
+    )
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(404).json({ error }));
+};
+
+//user infos modification function export to be used in routes file
+exports.modifyUser = (req, res, next) => {
+    User.findByPk(
+        req.params.id,
+        {
+        attributes: {
+            exclude: [
+                'password',
+                'email'
+            ]
+        }
+    }
+        )
+    .then(user =>{
+     const userObject = req.file ?
+     { 
+       ...JSON.parse(req.body.user),
+       picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+     } : {...req.body};
+ 
+     if(user.id === req.token.userId) {
+       User.update({...userObject, id: req.params.id}, { where: {id: req.params.id }})
+       .then(() => res.status(200).json({ message: 'Votre profil est modifié !'}))
+       .catch(error => res.status(400).json({ error }));
+     } else {
+       res.status(403).json({ error: "Vous ne pouvez pas modifier ce profil"})
+     }
+    }) 
+     .catch(error => res.status(500).json({ error }));  
+   };
+
+
+
+
+
+
 
       
 
