@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../assets/images/icon-left-font-monochrome-white.svg";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowRightToBracket, faHouse/*faBars,faUserPlus, faSun*/} from '@fortawesome/free-solid-svg-icons';
+import {faArrowRightToBracket, faHouse,faUserPlus /*faBars,faUserPlus, faSun*/} from '@fortawesome/free-solid-svg-icons';
 /*import {useState} from "react";*/
 
 function Header() {
@@ -31,8 +31,11 @@ function Header() {
                         <Link className= "header-right__link" to="/" aria-label="icone d'accueil">
                             <FontAwesomeIcon icon={faHouse} className="header-right__icon"/>
                         </Link>
-                        <Link className= "header-right__link" to="/Login" aria-label="inscription">
+                        <Link className= "header-right__link" to="/Login" aria-label="connexion">
                             <FontAwesomeIcon icon={faArrowRightToBracket} className="header-right__icon"/>
+                        </Link>
+                        <Link className= "header-right__link" to="/Signup" aria-label="inscription">
+                            <FontAwesomeIcon icon={faUserPlus} className="header-right__icon"/>
                         </Link>
                         {/*<div className="header-right__switch header-right__link">
                             <FontAwesomeIcon icon={faSun} className="header-right__icon"/>
