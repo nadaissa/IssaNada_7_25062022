@@ -4,7 +4,7 @@ function Login() {
     return (
         <div className="main-content-wrapper" aria-label="contenu principal">
             <div className="login-area" aria-label="formulaire de connexion">    
-                <h1 className="login-area__h1" aria-label="titre formulaire connexion">Connectez-vous</h1>
+                <h1 className="login-area__h1" aria-label="titre formulaire connexion">Connexion</h1>
                 <form className="login-area__form" action="#" method="POST" encType="multipart/form-data">
                     <div className="login-area__mail login-area__group">
                         <label className="login-area__label" htmlFor="email">Email:</label>

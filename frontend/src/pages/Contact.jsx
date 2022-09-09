@@ -20,9 +20,7 @@ function Contact() {
                         <label className="contact-area__label" htmlFor="message">Votre message:</label>
                         <textarea className="contact-area__input" id="message" name="message" rows="7" cols="30"></textarea>
                     </div>
-                    <div className="contact-area__btns contact-area__group">
-                        <button className="contact-area__btn submit-btn" type="submit">Envoyez</button>
-                    </div>
+                    <button className="contact-area__btn submit-btn" type="submit">Envoyez</button>
                 </form>
             </div>
        </div>

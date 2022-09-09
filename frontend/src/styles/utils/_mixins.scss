@@ -19,7 +19,7 @@
     background-color: map-get($other-colors , light);
     border-radius: 0.5rem;
     padding: 0.2rem;
-    width: 13rem;
+    width: 10rem;
     &:hover{
         opacity: 0.85;
         box-shadow: 5px 5px 5px rgb(112, 110, 110);
@@ -29,13 +29,16 @@
 
 @mixin common-form{
     width: auto;
-    @include flex-column-center;
+    //display: flex;
+    //flex-direction: column;
+    //align-items: flex-start;
+    //border: solid pink 1px;
     
     &__form{
         //border: black solid;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        
         gap: 0.7rem;
     }
     &__group {
@@ -60,7 +63,7 @@
     &__btn{
         @include common-button;
         @include link-state;
-        margin: 0.5rem;
+        align-self: center;
     }
 }
 
