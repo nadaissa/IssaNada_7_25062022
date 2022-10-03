@@ -5,6 +5,7 @@ import { useState } from "react";
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
     const userLogin = async (e) =>
     {
         e.preventDefault();
@@ -16,7 +17,7 @@ function Login() {
             })
         .then((response) => {
             console.log(response);
-
+            window.location = '/';
         })
         .catch((error) => {
             console.log(error);

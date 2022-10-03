@@ -21,6 +21,7 @@ function Signup() {
             })
             .then((response) => {
             console.log(response);
+            window.location = '/login';
         })
         .catch((error) => {
             console.log(error);

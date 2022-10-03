@@ -50,16 +50,23 @@ exports.login = (req, res, next) => {
     User.findOne({ where: { email : req.body.email } })
         .then((user) => {
             if(!user) {
-                return res.status(401).json({message : "Utilisateur non trouvé!"});
+                return res.status(401).json({
+                    loggedIn: false,
+                    message : "Utilisateur non trouvé!"
+                });
             } 
             else {
                 bcrypt.compare(req.body.password, user.password)
                 .then((valid) => {
                     if(!valid) {
-                        return res.status(401).json({message : "Mot de passe incorrect !"});
+                        return res.status(401).json({
+                            loggedIn: false,
+                            message : "Mot de passe incorrect !"
+                        });
                     }
                     else {
                     res.status(200).json({
+                        loggedIn: true,
                         message: "Vous êtes connecté(e)!",
                         firstName: user.firstName,
                         userId: user.id,
