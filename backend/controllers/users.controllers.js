@@ -36,8 +36,7 @@ exports.signup = (req, res, next) => {
                     { userId: user.id },
                     process.env.SECRET_TOKEN,
                     { expiresIn: '24h' }
-                    )
-                    
+                    )                    
             })
         })
             .catch((error) => res.status(400).json({ error }));

@@ -7,7 +7,7 @@ function Signup() {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-       const signup = async (e) =>
+       const userSignup = async (e) =>
        {
         e.preventDefault();
         await Axios.post(
@@ -22,7 +22,11 @@ function Signup() {
             .then((response) => {
             console.log(response);
         })
+        .catch((error) => {
+            console.log(error);
+        })
     }
+
     return (
         <div className="main-content-wrapper" aria-label="contenu principal">
             
@@ -84,7 +88,7 @@ function Signup() {
                     <button 
                         className="login-area__btn signup-btn" 
                         type="submit"
-                        onClick={signup}
+                        onClick={userSignup}
                     >
                     Inscription
                     </button>
