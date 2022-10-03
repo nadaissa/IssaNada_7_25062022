@@ -79,6 +79,13 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
+exports.logout = (req, res, next) => {
+   
+                res.status(200).json({
+                    token: null
+                })
+    }
+
 
 //display all users export
 exports.getAllUsers = (req, res, next) => {

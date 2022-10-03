@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 
 const helmet = require('helmet');
+const cors = require('cors');
 
 //importing api routers
 const usersRoutes = require('./routes/users.router');
@@ -49,12 +50,14 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
+    //res.header('Content-Security-Policy', 'img-src * self');
     next();
     });
   
   //JSON parse method (express version >4.16 so no need to bodyparser)
   app.use(express.json());
   app.use(helmet());
+  app.use(cors());
 
 //indication to express for static handling of images ressources 
 app.use('/images', express.static(path.join(__dirname, 'images'))); //dirname is the target folder
