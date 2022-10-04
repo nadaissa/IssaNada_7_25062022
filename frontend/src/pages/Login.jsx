@@ -5,6 +5,7 @@ import { useState } from "react";
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setError] = useState('');
     
     const userLogin = async (e) =>
     {
@@ -16,11 +17,14 @@ function Login() {
                 password: password
             })
         .then((response) => {
-            console.log(response);
+            console.log(response.data.message);
             window.location = '/';
         })
         .catch((error) => {
-            console.log(error);
+            //console.log(error.response.data.message);
+            //window.alert(error.response.data.message);
+            //const errorMessage = error.response.data.message;
+            setError(error.response.data.message);
         })
     }
 
@@ -64,8 +68,8 @@ function Login() {
                     Connexion
                     </button>
                 </form>
-                
             </div>
+            <h2>{errorMessage}</h2>
         </div>
     )
 }

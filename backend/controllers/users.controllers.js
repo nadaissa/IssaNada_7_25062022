@@ -14,34 +14,42 @@ const { User } = db.sequelize.models;
 
 //signup function export to be used in routes file
 exports.signup = (req, res, next) => {
-   
-    //hashing the password
-    bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-        User.create({
-            email : req.body.email,
-            password: hash,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            bio: req.body.bio,
-            picture: req.body.picture,
-            admin: false
+    User.findOne({ where: { email : req.body.email } })
+    .then((user) => {
+        if(user) {
+            return res.status(401).json({
+                message : "Cet utilisateur existe déjà"
+            }); 
+        } else {
+            //hashing the password
+            bcrypt.hash(req.body.password, 10)
+            .then(hash => {
+                User.create({
+                    email : req.body.email,
+                    password: hash,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    bio: req.body.bio,
+                    picture: req.body.picture,
+                    admin: false
 
-        })
-        //saving the user in the DB
-        .then(user =>{
-            res.status(201).json({ 
-                message: "Utilisateur créé!",
-                token: jwt.sign(
-                    { userId: user.id },
-                    process.env.SECRET_TOKEN,
-                    { expiresIn: '24h' }
-                    )                    
+                })
+            //saving the user in the DB
+            .then(user =>{
+                res.status(201).json({ 
+                    message: "Utilisateur créé!",
+                    token: jwt.sign(
+                        { userId: user.id },
+                        process.env.SECRET_TOKEN,
+                        { expiresIn: '24h' }
+                        )                    
+                })
             })
-        })
             .catch((error) => res.status(400).json({ error }));
+            })
+            .catch(error => res.status(500).json({ error }));
+        }
     })
-    .catch(error => res.status(500).json({ error }));
 };
 
 //login function export to be used in routes file

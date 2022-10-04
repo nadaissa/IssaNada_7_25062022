@@ -3,10 +3,11 @@ import Axios from "axios";
 import { useState } from "react";
 
 function Signup() {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setError] = useState('');
        const userSignup = async (e) =>
        {
         e.preventDefault();
@@ -20,12 +21,16 @@ function Signup() {
                 
             })
             .then((response) => {
-            console.log(response);
-            window.location = '/login';
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+                console.log(response.data.message);
+                console.log(response);
+                window.location = '/login';
+            })
+            .catch((error) => {
+                //console.log(error.response.data.message);
+                //window.alert(error.response.data.message);
+                //const errorMessage = error.response.data.message;
+                setError(error.response.data.message);
+            })
     }
 
     return (
@@ -95,6 +100,7 @@ function Signup() {
                     </button>
                 </form>
             </div>
+            <h2>{errorMessage}</h2>
         </div>
     )
 }
