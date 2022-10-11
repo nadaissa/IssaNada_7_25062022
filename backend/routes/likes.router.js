@@ -9,6 +9,8 @@ const router = express.Router();
 //routes for post liking
 router.post('/:postId/like', auth, likesCtrl.likePost);
 
+router.get('/', auth, likesCtrl.getAllLikes);
+
 
 //router export
 module.exports = router;

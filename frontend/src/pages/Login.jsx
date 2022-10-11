@@ -1,11 +1,16 @@
 import React from "react";
 import Axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
+
 
 function Login() {
+    const Navigate = useNavigate('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setError] = useState('');
+    //const [token, setToken] = useState('')
     
     const userLogin = async (e) =>
     {
@@ -14,13 +19,23 @@ function Login() {
             'http://localhost:3001/api/auth/login',
             {
                 email: email,
-                password: password
+                password: password,
+            },
+            {
+                headers: { "Content-Type": "application/json"},
+                withCredentials: true,
             })
         .then((response) => {
+            //setToken(response.data.token);
+            console.log(response.data);
             console.log(response.data.message);
-            window.location = '/';
+            //const token = response.data.token;
+            //setToken(token);
+
+            Navigate('/Feed');
         })
         .catch((error) => {
+            console.log(error)
             //console.log(error.response.data.message);
             //window.alert(error.response.data.message);
             //const errorMessage = error.response.data.message;

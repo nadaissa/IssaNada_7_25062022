@@ -42,5 +42,14 @@ exports.likePost = async (req, res, next) => {
     }
 };
 
+exports.getAllLikes = (req, res, next) => {
+    Like.findAll({
+      //defining the chronological order of display (according to creation date from recent to old)
+      order: [['createdAt', 'DESC']]
+    })
+      .then(like=> res.status(200).json(like))
+      .catch(error => res.status(400).json({ error }));
+  };
+
 
 
