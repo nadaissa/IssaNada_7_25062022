@@ -6,7 +6,11 @@
 @import './layout/header';
 @import './layout/footer';
 
+@import './compoments/post';
+@import './compoments/publish';
+
 @import './pages/home';
 @import './pages/login';
 @import './pages/contact';
-@import './pages/mentions'
+@import './pages/mentions';
+@import './pages/feed';

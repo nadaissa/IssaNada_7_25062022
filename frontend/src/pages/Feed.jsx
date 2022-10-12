@@ -1,7 +1,9 @@
 import React from "react";
 import Post from "../components/Post";
+import Publish from "../components/Publish"
 import { useState, useEffect } from "react";
 import Axios from 'axios';
+
 
 
 function Feed() {
@@ -31,7 +33,7 @@ function Feed() {
                 headers: {
                     'Content-Type': 'application/json',
                     //'Authorization': `Bearer ${token}`
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM2LCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2NTQ4ODc2MiwiZXhwIjoxNjY1NTc1MTYyfQ.EzQ0zIBuwa1MWLBLPyu8oB-6G99pMK0t-cW2x_BJWUY'
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM2LCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2NTU3NTQ4NSwiZXhwIjoxNjY1NjYxODg1fQ.oLFDLRJj_1l9xwcleOcsp6zkw0giuVP43DJDiVHPvpQ'
                 }
             })
         .then((response) => {
@@ -53,9 +55,12 @@ function Feed() {
        }, []);
        
     return (
-        <div className="main-content-wrapper" aria-label="contenu principal">
-          <h1 className="feed-h1" aria-label="flux des posts">Voici l'acutalité de tes collègues!</h1>
+        <div className="feed" aria-label="contenu principal">
+          
+          <h1 className="feed__h1" aria-label="flux des posts">Voici l'acutalité de tes collègues!</h1>
+          <Publish/>
           <>
+            
             {posts ?
                 posts.map(post => {
                     return(
@@ -64,6 +69,7 @@ function Feed() {
                 }) : <h2>No posts yet</h2>
             }
            </>
+           
         </div>
     )
 }

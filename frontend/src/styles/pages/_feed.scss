@@ -1,0 +1,12 @@
+.feed{
+    width: auto;
+    padding: 0.5rem 0.5rem 5rem 0.5rem;
+    @include flex-column-center;
+    gap: 0.8rem;
+    /*display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;*/
+    border: solid 2px black;
+    
+}

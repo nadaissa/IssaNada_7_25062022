@@ -1,0 +1,76 @@
+.publish{
+    width: 98%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);
+    @include flex-column-center;
+    gap: 0.5rem;
+    color: map-get($identity-colors, tertiary); 
+    //align-items: flex-start;
+    border: solid rosybrown 2px;
+    @include desk-screen {
+        max-width:500px;
+    }
+    /*display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;*/
+    &__top {
+        
+        width: 100%;
+        height: 40%;
+        display: flex;
+        padding: 0;
+        //justify-content: space-between;
+        //justify-content: space-between;
+        //gap: 0.8rem;
+        align-self: flex-start;
+        border: solid 2px blue;
+    }
+    &__profileImg{
+        border: solid 2px black;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+        
+    }
+    &__firstName{
+        @include txt-sz-wght (medium-bold);
+        align-self: flex-end;
+        margin-left: 0.5rem;
+        margin-right: 0;
+        border: solid 2px black;
+    }
+
+
+    &__bottom{
+        height: 60%;
+        width: 100%;
+        border: solid 2px green;
+        @include txt-sz-wght(medium-bold);
+        display: flex;
+        flex-direction: column;
+        
+        gap: 0.5rem;
+    }
+    &__group{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    &__content, &__image{
+        border: solid 0.2rem map-get($identity-colors, secondary);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+
+
+    &__btn{
+        @include common-button;
+        @include txt-sz-wght(medium-bold);
+        width: 7rem;
+        
+    }
+}

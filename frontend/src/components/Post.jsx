@@ -1,20 +1,24 @@
 import React from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 function Post({ post }) {
     return (
-        <div className="post-wrapper" >
-            <div className="postTop">
-                <img className="postProfileImg" src="" alt="TestImage"/>
-                <span className="postFirstName">TestFName</span>
-                <span className="postDate">TestDate</span>
+        <div className="post" >
+            <div className="post__top">
+                <img className="post__profileImg" src="/assets/testImgs/profile_test.png" alt="tImage"/>
+                <span className="post__firstName">FName</span>
+                <span className="post__date">Date</span>
             </div>
-            <div className="postCenter">
-                <span className="postContent">{post?.postContent}</span>
-                <img className="postMedia" src={post.postMedia} alt="TestPostMedia"/>
+            <div className="post__center">
+                <span className="post__content">{post?.postContent}</span>
+                <img className="post__media" src={post?.postMedia} alt="TestPostMedia"/>
             </div>
-            <div className="postBottom">
-                <span className="postLikeIcon">like?</span>
-                <span className="likeCounter">33likes?</span>
+            <div className="post__bottom">
+                <span className="post__likeIcon">
+                    <FontAwesomeIcon icon={faThumbsUp} className="post__icon"/>
+                </span>
+                <span className="like__counter">33</span>
             
             </div>
         </div>
