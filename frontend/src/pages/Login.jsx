@@ -2,7 +2,8 @@ import React from "react";
 import Axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import Cookies from 'js-cookie';
+import axios from "axios";
 
 
 function Login() {
@@ -22,8 +23,13 @@ function Login() {
                 password: password,
             },
             {
-                headers: { "Content-Type": "application/json"},
-                withCredentials: true,
+                headers: { 
+                    "Content-Type": "application/json"
+                    
+            },
+            
+            withCredentials: true
+            
             })
         .then((response) => {
             //setToken(response.data.token);
@@ -31,6 +37,16 @@ function Login() {
             console.log(response.data.message);
             //const token = response.data.token;
             //setToken(token);
+            axios.create({
+                headers: {
+                    'Cookie': Cookies.set(
+                    'token', 
+                response.data.token,
+                {expires: 1},
+                //{sameSite : 'Secure'}
+                    )
+                }
+            })
 
             Navigate('/Feed');
         })

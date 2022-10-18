@@ -2,8 +2,10 @@
     width: 98%;
     padding: 0.5rem;
     border-radius: 0.5rem;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);
+    -webkit-box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
+    box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
+    /*box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);*/
     @include flex-column-center;
     gap: 0.5rem;
     color: map-get($identity-colors, tertiary); 

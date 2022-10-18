@@ -3,7 +3,7 @@ import Post from "../components/Post";
 import Publish from "../components/Publish"
 import { useState, useEffect } from "react";
 import Axios from 'axios';
-
+import Cookies from "js-cookie";
 
 
 function Feed() {
@@ -32,9 +32,15 @@ function Feed() {
             {
                 headers: {
                     'Content-Type': 'application/json',
+                    //'Cookies': Cookies.get('token')
+                    'Authorization': `Bearer ${Cookies.get('token')}`
                     //'Authorization': `Bearer ${token}`
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM2LCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2NTU3NTQ4NSwiZXhwIjoxNjY1NjYxODg1fQ.oLFDLRJj_1l9xwcleOcsp6zkw0giuVP43DJDiVHPvpQ'
-                }
+                    //'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjY3LCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2NjA4NDIzOSwiZXhwIjoxNjY2MTcwNjM5fQ.K7cwCC8V0C0uiwJcj3BrPd8Sfs6bAU-q_lIRIRe1NbY'
+                },
+                //Cookies: Cookies.get('token'),
+                
+                withCredentials: true
+
             })
         .then((response) => {
             
@@ -57,7 +63,7 @@ function Feed() {
     return (
         <div className="feed" aria-label="contenu principal">
           
-          <h1 className="feed__h1" aria-label="flux des posts">Voici l'acutalité de tes collègues!</h1>
+          <h1 className="feed__h1" aria-label="flux des posts">Voici l'actualité de tes collègues!</h1>
           <Publish/>
           <>
             
