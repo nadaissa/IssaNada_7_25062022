@@ -1,8 +1,10 @@
 import React from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 
 function Signup() {
+    const Navigate = useNavigate('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,12 +25,10 @@ function Signup() {
             .then((response) => {
                 console.log(response.data.message);
                 console.log(response);
-                window.location = '/login';
+                alert(response.data.message);
+                Navigate('/login');
             })
             .catch((error) => {
-                //console.log(error.response.data.message);
-                //window.alert(error.response.data.message);
-                //const errorMessage = error.response.data.message;
                 setError(error.response.data.message);
             })
     }

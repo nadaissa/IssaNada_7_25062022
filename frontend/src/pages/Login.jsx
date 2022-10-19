@@ -3,15 +3,13 @@ import Axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
-import axios from "axios";
-
 
 function Login() {
     const Navigate = useNavigate('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setError] = useState('');
-    //const [token, setToken] = useState('')
+  
     
     const userLogin = async (e) =>
     {
@@ -32,18 +30,16 @@ function Login() {
             
             })
         .then((response) => {
-            //setToken(response.data.token);
             console.log(response.data);
             console.log(response.data.message);
-            //const token = response.data.token;
-            //setToken(token);
-            axios.create({
+            Axios.create({
                 headers: {
                     'Cookie': Cookies.set(
                     'token', 
                 response.data.token,
                 {expires: 1},
-                //{sameSite : 'Secure'}
+                { secure: true },
+                { sameSite: 'None' }
                     )
                 }
             })
@@ -52,9 +48,6 @@ function Login() {
         })
         .catch((error) => {
             console.log(error)
-            //console.log(error.response.data.message);
-            //window.alert(error.response.data.message);
-            //const errorMessage = error.response.data.message;
             setError(error.response.data.message);
         })
     }

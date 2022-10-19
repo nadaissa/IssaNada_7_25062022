@@ -9,35 +9,16 @@ import Cookies from "js-cookie";
 function Feed() {
     const [posts, setPosts] = useState('');
     //const [errorMessage, setError] = useState('');
-    //const token = Axios.interceptors.request.use( `response.data.token`);
-    /*const [token, setToken] = useState('');
-
     
-    const AxiosJWT = Axios.create();
-    AxiosJWT.interceptors.request.use( async (config) => {
-        const response = await Axios.get('http://localhost:3001/api/auth/login');
-        config.headers.Authorization = `Bearer ${response.data.token}`;
-        setToken(response.data.token);
-    console.log(config)
-        return config
-    
-    }, (error) => {
-        
-        return Promise.reject(error);
-    });*/
-
     const getAllPosts = async ()=> {
     
         await Axios.get('http://localhost:3001/api/posts',  
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    //'Cookies': Cookies.get('token')
                     'Authorization': `Bearer ${Cookies.get('token')}`
-                    //'Authorization': `Bearer ${token}`
-                    //'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjY3LCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2NjA4NDIzOSwiZXhwIjoxNjY2MTcwNjM5fQ.K7cwCC8V0C0uiwJcj3BrPd8Sfs6bAU-q_lIRIRe1NbY'
-                },
-                //Cookies: Cookies.get('token'),
+                     },
+                
                 
                 withCredentials: true
 
@@ -49,9 +30,6 @@ function Feed() {
         })
         .catch((error) => {
             console.log(error);
-
-            //window.alert(error.response.data.message);
-            //const errorMessage = error.response.data.message;
             //setError(error.response.data.message);
         })
        }
