@@ -50,7 +50,7 @@ function Feed() {
                     return(
                     <Post key={post.id} post={post}/>
                     )
-                }) : <h2>No posts yet</h2>
+                }) : <h2>Rien de neuf!</h2>
             }
            </>
            

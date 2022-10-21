@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Feed from './pages/Feed'
+import Users from './pages/Users'
 import Contact from './pages/Contact'
 import Mentions from './pages/Mentions'
 
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/Contact" element={<Contact/>}/>
             <Route exact path='/Mentions' element={<Mentions/>}/>
             <Route path='/Feed' element={<Feed/>}/>
+            <Route path='/Users' element={<Users/>}/>
             
             </Routes>            
             
