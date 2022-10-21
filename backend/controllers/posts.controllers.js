@@ -11,7 +11,7 @@ exports.createPost = async (req, res, next) => {
   try {
       const post = new Post({
           userId: req.token.userId,
-          postContent: req.file ? req.body.post : req.body.postContent,
+          postContent: req.body.postContent,
           postMedia: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
 
       })

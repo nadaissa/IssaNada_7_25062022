@@ -26,4 +26,4 @@ const fileFilter = (req, file, callback) => {
 
 //configuration of the multer upload with the two functions
 const uploadImage = multer({ storage: storage, fileFilter: fileFilter });
-module.exports = uploadImage.single('image');
+module.exports = uploadImage.single('postMedia');

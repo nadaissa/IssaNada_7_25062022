@@ -30,7 +30,8 @@ exports.signup = (req, res, next) => {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     bio: req.body.bio,
-                    picture: req.body.picture,
+                    //picture: req.body.picture,
+                    picture: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
                     admin: false
 
                 })
