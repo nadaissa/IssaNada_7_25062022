@@ -1,4 +1,4 @@
-import React from "react";
+
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 //import Axios from 'axios';
@@ -8,14 +8,13 @@ import Moment from 'moment';
 
 function Post ({ post }) {
     //const [users, setUsers] = useState('')
-   
     
     return (
         <div className="post" >
             <div className="post__top">
                 <div className="post__topLeft">
-                    <img className="post__profileImg" src="" alt="" />
-                    <span className="post__firstName">{post.userId}</span>
+                    <img className="post__profileImg" src={post.User.picture} alt={post.User.fristName} />
+                    <span className="post__firstName">{post.User.firstName}</span>
                 </div>
                 <div className="post__topRight">
                     <span className="post__date">{Moment(post?.createdAt).format('L')}</span>

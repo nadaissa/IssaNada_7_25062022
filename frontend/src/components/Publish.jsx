@@ -64,10 +64,10 @@ function Publish() {
     
     return (
         <div className="publish" >
-            <div className="publish__top">
+            {/*<div className="publish__top">
                 <img className="publish__profileImg" src="" alt=""/>
                 <span className="publish__firstName">FName</span>
-            </div>
+    </div>*/}
             <form className="publish__bottom publish__form">
                 <div className="publish__group publish__text-area">
                     <label htmlFor="postContent publish___label"></label>

@@ -47,7 +47,7 @@ function Users () {
                     return(
                     <User key={user.id} user={user}/>
                     )
-                }) : <h2>Affichage impossible</h2>
+                }) : <h2>Tu dois te connecter pour accéder à cette page</h2>
             }
            </>
         </div>

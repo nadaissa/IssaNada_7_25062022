@@ -50,7 +50,7 @@ function Feed() {
                     return(
                     <Post key={post.id} post={post}/>
                     )
-                }) : <h2>Rien de neuf!</h2>
+                }) : <h2>Tu dois te connecter pour poster et accéder au fil</h2>
             }
            </>
            
