@@ -23,9 +23,11 @@ function Post ({ post }) {
             </div>
             <div className="post__center">
                 <span className="post__content">{post?.postContent}</span>
-                <img className="post__media" src={post?.postMedia} alt="TestPostMedia" crossOrigin=""/>
+                <img className="post__media" src={post?.postMedia} alt="" crossOrigin=""/>
             </div>
             <div className="post__bottom">
+                <button className='post__modify'>Modifier</button>
+                <button className='post__delete'>Supprimer</button>
                 <span className="post__likeIcon">
                     <FontAwesomeIcon icon={faThumbsUp} className="post__icon"/>
                 </span>

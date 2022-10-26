@@ -14,12 +14,18 @@ function User ({user}) {
                 <span className="user__firstName">{user?.firstName}</span>
                 <span className="user__lastName">{user?.lastName}</span>
                 
+                
             </div>
             <div className="user__center">
                 <span className="user__bio">{user?.bio}</span>
+                
             </div>
             <div className="user__bottom">
                 <span className="user__date">Depuis: {Moment(user?.createdAt).format('L')}</span>
+                <button className='user__modify'>Modifier</button>
+                <button className='user__delete'>Supprimer</button>
+
+                
             </div>
         </div>                
 

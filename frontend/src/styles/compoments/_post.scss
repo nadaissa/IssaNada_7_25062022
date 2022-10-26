@@ -102,12 +102,19 @@
         @include txt-sz-wght(medium-bold);
         display: flex;
         justify-content: flex-end;
-        gap: 0.1rem;
+        gap: 0.5rem;
     }
 
-   
+    &__modify{
+    @include common-button;
+    @include txt-sz-wght(small-normal);
+    width: 5rem;
+    }
 
-
+    &__delete{
+        @include common-button;
+        @include txt-sz-wght(small-normal);
+        background-color: map-get($other-colors, secondary-s);
+        width: 5rem;
+    }
 }
-
-

@@ -57,13 +57,29 @@
         height: 10%;
         width: 100%;
         //border: solid 2px green;
-        @include txt-sz-wght(medium-normal);
+        @include txt-sz-wght(smaller-normal);
         display: flex;
-        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
         
     }
-    &__date{
-        align-self: flex-end;
+    //&__date{
+     //   align-self: flex-end;
+    //}
+
+    &__modify{
+        @include common-button;
+        @include txt-sz-wght(smaller-normal);
+        width: 5rem;
+        
+        }
+    
+    &__delete{
+        @include common-button;
+        @include txt-sz-wght(smaller-normal);
+        background-color: map-get($other-colors, secondary-s);
+        width: 5rem;
     }
 
 }
