@@ -1,20 +1,54 @@
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-//import Axios from 'axios';
-//import { useEffect, useState } from "react";
-//import Cookies from "js-cookie";
+import Axios from 'axios';
+import { useState } from "react";
+import Cookies from "js-cookie";
 import Moment from 'moment';
 
 function Post ({ post }) {
-    //const [users, setUsers] = useState('')
-    
+    const [like, setLike] = useState('')
+    const likePost = async (e) => {
+        
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append('like', like);
+
+        await Axios.post(`http://localhost:3001/api/likes/${post.id}/like`,
+        
+        formData,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Cookies.get('token')}`
+                 },
+            
+            
+            withCredentials: true
+
+        }
+        
+        )
+        .then((response) => {
+            //console.log(response.data.message);
+            setLike(response);
+            console.log(response)
+            //console.log(like);
+            window.location.reload();
+
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+        
+    }
     return (
         <div className="post" >
             <div className="post__top">
                 <div className="post__topLeft">
-                    <img className="post__profileImg" src={post.User.picture} alt={post.User.fristName} />
-                    <span className="post__firstName">{post.User.firstName}</span>
+                    <img className="post__profileImg" src={post?.User.picture} alt={post.User.fristName} crossOrigin=""/>
+                    <span className="post__firstName">{post?.User.firstName}</span>
                 </div>
                 <div className="post__topRight">
                     <span className="post__date">{Moment(post?.createdAt).format('L')}</span>
@@ -29,9 +63,14 @@ function Post ({ post }) {
                 <button className='post__modify'>Modifier</button>
                 <button className='post__delete'>Supprimer</button>
                 <span className="post__likeIcon">
-                    <FontAwesomeIcon icon={faThumbsUp} className="post__icon"/>
+                    <FontAwesomeIcon 
+                        icon={faThumbsUp} 
+                        className="post__icon"
+                        type="submit"
+                        onClick={likePost}/>
                 </span>
-                <span className="like__counter">33</span>
+                <span className="like__counter">{post?.Likes.length}</span>
+                
             </div>
         </div>
     )

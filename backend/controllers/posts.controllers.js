@@ -6,6 +6,7 @@ const fs = require('fs');
 //Model import
 const { Post } = db.sequelize.models;
 const { User } = db.sequelize.models;
+const { Like } = db.sequelize.models;
 //functions for post handeling, the identification by the userId token is imposed for deleting and modifying
 //post creation function export to be used in routes file
 exports.createPost = async (req, res, next) => {
@@ -72,10 +73,14 @@ exports.getOnePost = (req, res, next) => {
   Post.findByPk(
     req.params.id,
     {
-      include: {
-      model: User,
-      attributes : ['firstName', 'picture']
-      }
+      include: [
+        {
+        model: User,
+        attributes : ['firstName', 'picture']
+      },
+      {
+        model: Like,
+      }]
     }
     )
     .then(post => res.status(200).json(post))
@@ -89,11 +94,33 @@ exports.getAllPosts = (req, res, next) => {
   Post.findAll({
     //defining the chronological order of display (according to creation date from recent to old)
     order: [['createdAt', 'DESC']],
-    include: {
+    include: [
+      {
       model: User,
       attributes : ['firstName', 'picture']
-    }
+    },
+    {
+      model: Like,
+    }]
   })
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json({ error }));
 };
+
+/*
+ include: [
+      {
+      model: User,
+      attributes : ['firstName', 'picture']
+    },
+    {
+      model: Like,
+    }]
+
+
+
+    include: {
+      model: User,
+      attributes : ['firstName', 'picture']
+    }
+*/
