@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const db = require("../models/index");
 
 //file system import to delete or modify users
-//const fs = require('fs');
+const fs = require('fs');
 
 //Model import
 const { User } = db.sequelize.models;
@@ -31,7 +31,7 @@ exports.signup = (req, res, next) => {
                     lastName: req.body.lastName,
                     bio: req.body.bio,
                     //picture: req.body.picture,
-                    picture: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
+                    //picture: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
                     admin: false
 
                 })
@@ -136,7 +136,7 @@ exports.getOneUser = (req, res, next) => {
 };
 
 //user infos modification function export to be used in routes file
-exports.modifyUser = (req, res, next) => {
+/*exports.modifyUser = (req, res, next) => {
     User.findByPk(
         req.params.id,
         {
@@ -164,7 +164,7 @@ exports.modifyUser = (req, res, next) => {
      }
     }) 
      .catch(error => res.status(500).json({ error }));  
-   };
+   };*/
 
 
 

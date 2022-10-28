@@ -33,9 +33,11 @@ function Post ({ post }) {
         .then((response) => {
             //console.log(response.data.message);
             setLike(response);
+            alert(response.data.message);
             console.log(response)
-            //console.log(like);
             window.location.reload();
+            console.log("liked: " + response.data.liked);
+           
 
         })
         .catch((error) =>{
@@ -43,6 +45,36 @@ function Post ({ post }) {
         })
         
     }
+
+    const deletePost = async (e) => {
+        e.preventDefault();
+
+        await Axios.delete(`http://localhost:3001/api/posts/${post.id}`,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${Cookies.get('token')}`
+                 },
+            
+            
+            withCredentials: true
+
+        }
+        )
+        .then((response) => {
+            //console.log(response.data.message);
+            console.log(response)
+            window.location.reload();
+
+        })
+        .catch((error) =>{
+            console.log(error);
+            alert(error.response.data.error)
+        })
+
+    }
+
+    
     return (
         <div className="post" >
             <div className="post__top">
@@ -61,11 +93,20 @@ function Post ({ post }) {
             </div>
             <div className="post__bottom">
                 <button className='post__modify'>Modifier</button>
-                <button className='post__delete'>Supprimer</button>
+                <button 
+                
+                    className='post__delete'
+                    type="submit"
+                    onClick={deletePost}
+                >
+                Supprimer
+                </button>
+                
                 <span className="post__likeIcon">
                     <FontAwesomeIcon 
-                        icon={faThumbsUp} 
+                        icon={faThumbsUp}
                         className="post__icon"
+                        id='post__icon'
                         type="submit"
                         onClick={likePost}/>
                 </span>

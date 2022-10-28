@@ -23,7 +23,11 @@ exports.likePost = async (req, res, next) => {
         //in case it's true, dislike (delete the like and inform the user)
         if(alreadyLiked) {
             await alreadyLiked.destroy();
-            res.status(200).json({message: 'Votre like est supprimé :)'});
+            res.status(200).json({
+                message: 'Votre like est supprimé :)',
+                liked: false,
+            });
+
         }
 
         //in case it's not true, create a row in the likes table 
@@ -34,7 +38,10 @@ exports.likePost = async (req, res, next) => {
                 postId: req.params.postId
             });
             //inofrm the user
-            res.status(201).json({message: 'Votre like est pris en compte'});
+            res.status(200).json({
+                message: 'Votre like est pris en compte',
+                liked: true,
+            });
         }
     }
     catch(error){

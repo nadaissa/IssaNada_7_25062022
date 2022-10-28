@@ -105,6 +105,10 @@
         gap: 0.5rem;
     }
 
+    &__icon{
+        fill: none;
+    }
+
     &__modify{
     @include common-button;
     @include txt-sz-wght(small-normal);
