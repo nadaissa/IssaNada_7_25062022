@@ -32,7 +32,7 @@ exports.signup = (req, res, next) => {
                     bio: req.body.bio,
                     //picture: req.body.picture,
                     //picture: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
-                    admin: false
+                    admin: req.body.admin
 
                 })
             //saving the user in the DB

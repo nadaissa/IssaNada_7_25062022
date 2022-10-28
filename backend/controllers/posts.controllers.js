@@ -39,7 +39,7 @@ exports.modifyPost = (req, res, next) => {
       postMedia: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body};
 
-    if(post.userId === req.token.userId) {
+    if(post.userId === req.token.userId || req.token.admin === true) {
       Post.update({...postObject, id: req.params.id}, { where: {id: req.params.id }})
       .then(() => res.status(200).json({ message: 'Votre post est modifié !'}))
       .catch(error => res.status(400).json({ error }));
@@ -54,7 +54,7 @@ exports.modifyPost = (req, res, next) => {
 exports.deletePost = (req, res, next) => {
     Post.findByPk (req.params.id)
     .then(post =>{
-      if(post.userId === req.token.userId || req.token.admin) {
+      if(post.userId === req.token.userId || req.token.admin === true) {
         const filename = post.postMedia.split('/images/')[1];
         fs.unlink(`images/${filename}`, () => {
           Post.destroy({ where: { id: req.params.id } })
