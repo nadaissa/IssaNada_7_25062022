@@ -26,7 +26,7 @@ function Login() {
                     
             },
             
-            withCredentials: true
+            //withCredentials: true
             
             })
         .then((response) => {

@@ -10,6 +10,7 @@ import Feed from './pages/Feed'
 import Users from './pages/Users'
 import Contact from './pages/Contact'
 import Mentions from './pages/Mentions'
+import Modify from './pages/Modify'
 
 function App() {
     
@@ -25,6 +26,7 @@ function App() {
             <Route exact path='/Mentions' element={<Mentions/>}/>
             <Route path='/Feed' element={<Feed/>}/>
             <Route path='/Users' element={<Users/>}/>
+            <Route exact path="/Modify/:id" element={<Modify/>}/>
             
             </Routes>            
             

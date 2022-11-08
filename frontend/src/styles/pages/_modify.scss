@@ -1,0 +1,10 @@
+.modify{
+    @include common-form;
+    color: map-get($identity-colors, tertiary);
+    &__oldImg {
+        border-radius: 0.5rem;
+        object-fit: cover;
+        max-width: 75%;
+        max-height: 50%;
+    }
+}

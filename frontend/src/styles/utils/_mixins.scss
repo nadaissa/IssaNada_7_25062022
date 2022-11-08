@@ -49,6 +49,7 @@
     }
     &__label{
         @include txt-sz-wght(big-bold);
+        color: map-get($identity-colors, tertiary);
     }
     &__input{
         border: solid 0.2rem map-get($identity-colors, secondary);
@@ -56,7 +57,7 @@
         padding: 0.5rem;
     }
     &__textarea{
-        border: solid 0.2rem map-get($identity-colors, tertiary);
+        border: solid 0.2rem map-get($identity-colors, secondary);
         border-radius: 0.5rem;
     }
 

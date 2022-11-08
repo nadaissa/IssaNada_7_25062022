@@ -36,7 +36,7 @@ function Publish() {
             'Authorization': `Bearer ${Cookies.get('token')}`
             },
             
-            withCredentials: true,
+            //withCredentials: true,
 
             transformeRequest: formData => formData
         

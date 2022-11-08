@@ -20,7 +20,7 @@ function Feed() {
                      },
                 
                 
-                withCredentials: true
+                //withCredentials: true
 
             })
         .then((response) => {

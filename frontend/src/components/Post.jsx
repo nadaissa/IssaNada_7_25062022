@@ -5,8 +5,11 @@ import Axios from 'axios';
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Moment from 'moment';
+import { useNavigate } from 'react-router';
 
 function Post ({ post }) {
+
+    const Navigate = useNavigate('');
     const [like, setLike] = useState('')
     const likePost = async (e) => {
         
@@ -25,7 +28,7 @@ function Post ({ post }) {
                  },
             
             
-            withCredentials: true
+            //withCredentials: true
 
         }
         
@@ -57,7 +60,7 @@ function Post ({ post }) {
                  },
             
             
-            withCredentials: true
+            //withCredentials: true
 
         }
         )
@@ -73,6 +76,39 @@ function Post ({ post }) {
         })
 
     }
+
+    const getPost = async ()=> {
+        await Axios.get(`http://localhost:3001/api/posts/${post.id}`,  
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${Cookies.get('token')}`
+                     },
+                
+                
+                //withCredentials: true
+    
+            })
+        .then((response) => {
+
+            Navigate(
+                `/Modify/${post.id}`,
+                {
+                    state:{
+                        id: `${post.id}`,
+                        postContent: `${post.postContent}`,
+                        postMedia: `${post.postMedia}`
+                 }
+            });
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+            //setError(error.response.data.message);
+        })
+    }
+    
+    
 
     
     return (
@@ -92,7 +128,15 @@ function Post ({ post }) {
                 <img className="post__media" src={post?.postMedia} alt="" crossOrigin=""/>
             </div>
             <div className="post__bottom">
-                <button className='post__modify'>Modifier</button>
+                
+                
+
+                <button className='post__modify'
+                onClick={getPost}
+                >
+                    Modifier</button>
+                
+                
                 <button 
                 
                     className='post__delete'
