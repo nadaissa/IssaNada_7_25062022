@@ -46,7 +46,7 @@
         object-fit: cover;
         
     }
-    &__firstName{
+    &__firstName, &__lastName {
         @include txt-sz-wght (medium-bold);
         align-self: flex-end;
         margin-left: 0.5rem;

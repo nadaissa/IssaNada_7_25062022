@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/Signup" element={<Signup/>}/>
             <Route exact path="/Contact" element={<Contact/>}/>
             <Route exact path='/Mentions' element={<Mentions/>}/>
-            <Route path='/Feed' element={<Feed/>}/>
+            <Route path='/Feed/:id' element={<Feed/>}/>
             <Route path='/Users' element={<Users/>}/>
             <Route exact path="/Modify/:id" element={<Modify/>}/>
             

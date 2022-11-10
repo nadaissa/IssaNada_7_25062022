@@ -6,9 +6,13 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Moment from 'moment';
 import { useNavigate } from 'react-router';
+import { useLocation } from "react-router-dom";
+
+
+
 
 function Post ({ post }) {
-
+    const location = useLocation();
     const Navigate = useNavigate('');
     const [like, setLike] = useState('')
     const likePost = async (e) => {
@@ -49,7 +53,7 @@ function Post ({ post }) {
         
     }
 
-    const deletePost = async (e) => {
+    /*const deletePost = async (e) => {
         e.preventDefault();
 
         await Axios.delete(`http://localhost:3001/api/posts/${post.id}`,
@@ -106,10 +110,98 @@ function Post ({ post }) {
             console.log(error);
             //setError(error.response.data.message);
         })
-    }
+    }*/
+   
     
+    const DisplayBtns = () => {
+        
+        const deletePost = async (e) => {
+            e.preventDefault();
     
+            await Axios.delete(`http://localhost:3001/api/posts/${post.id}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${Cookies.get('token')}`
+                     },
+                
+                
+                //withCredentials: true
+    
+            }
+            )
+            .then((response) => {
+                //console.log(response.data.message);
+                console.log(response)
+                window.location.reload();
+    
+            })
+            .catch((error) =>{
+                console.log(error);
+                alert(error.response.data.error)
+            })
+    
+        }
+    
+        const getPost = async ()=> {
+            await Axios.get(`http://localhost:3001/api/posts/${post.id}`,  
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${Cookies.get('token')}`
+                         },
+                    
+                    
+                    //withCredentials: true
+        
+                })
+            .then((response) => {
+    
+                Navigate(
+                    `/Modify/${post.id}`,
+                    {
+                        state:{
+                            id: `${post.id}`,
+                            postContent: `${post.postContent}`,
+                            postMedia: `${post.postMedia}`
+                     }
+                });
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+                //setError(error.response.data.message);
+            })
+        }
 
+        const postUser = post.userId;
+        const currentUser = location.state.id;
+
+       if(postUser === currentUser){
+        return (
+            <>
+            <button className='post__modify'
+            onClick={getPost}
+            >
+            Modifier</button>
+
+        <button 
+        className='post__delete'
+        type="submit"
+        onClick={deletePost}
+        >
+        Supprimer
+        </button>
+        </>
+        )
+           } else {
+            return (
+                <></>
+              
+              )
+            }
+        }
+        
     
     return (
         <div className="post" >
@@ -117,6 +209,7 @@ function Post ({ post }) {
                 <div className="post__topLeft">
                     <img className="post__profileImg" src={post?.User.picture} alt={post.User.fristName} crossOrigin=""/>
                     <span className="post__firstName">{post?.User.firstName}</span>
+                    <span className="post__lastName">{post?.User.lastName}</span>
                 </div>
                 <div className="post__topRight">
                     <span className="post__date">{Moment(post?.createdAt).format('L')}</span>
@@ -128,23 +221,8 @@ function Post ({ post }) {
                 <img className="post__media" src={post?.postMedia} alt="" crossOrigin=""/>
             </div>
             <div className="post__bottom">
+           <DisplayBtns/>
                 
-                
-
-                <button className='post__modify'
-                onClick={getPost}
-                >
-                    Modifier</button>
-                
-                
-                <button 
-                
-                    className='post__delete'
-                    type="submit"
-                    onClick={deletePost}
-                >
-                Supprimer
-                </button>
                 
                 <span className="post__likeIcon">
                     <FontAwesomeIcon 

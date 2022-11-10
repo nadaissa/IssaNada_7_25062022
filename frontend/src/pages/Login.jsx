@@ -29,14 +29,14 @@ function Login() {
             //withCredentials: true
             
             })
-        .then((response) => {
-            console.log(response.data);
-            console.log(response.data.message);
+        .then((user) => {
+            console.log(user.data);
+            console.log(user.data.message);
             Axios.create({
                 headers: {
                     'Cookie': Cookies.set(
                     'token', 
-                response.data.token,
+                user.data.token,
                 {expires: 1},
                 { secure: true },
                 { sameSite: 'None' }
@@ -44,7 +44,12 @@ function Login() {
                 }
             })
 
-            Navigate('/Feed');
+            Navigate(`/Feed/${user.data.userId}${user.data.firstName}`,
+                {
+                    state:{
+                        id: parseFloat(user.data.userId),
+         } 
+        })
         })
         .catch((error) => {
             console.log(error)
