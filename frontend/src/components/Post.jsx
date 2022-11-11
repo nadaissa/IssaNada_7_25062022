@@ -176,8 +176,9 @@ function Post ({ post }) {
 
         const postUser = post.userId;
         const currentUser = location.state.id;
+        const isAdmin = location.state.admin;
 
-       if(postUser === currentUser){
+       if(postUser === currentUser || isAdmin === true){
         return (
             <>
             <button className='post__modify'

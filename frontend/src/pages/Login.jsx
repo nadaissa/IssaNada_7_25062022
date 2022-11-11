@@ -44,10 +44,11 @@ function Login() {
                 }
             })
 
-            Navigate(`/Feed/${user.data.userId}${user.data.firstName}`,
+            Navigate(`/Feed/${user.data.firstName}`,
                 {
                     state:{
                         id: parseFloat(user.data.userId),
+                        admin: (user.data.admin)
          } 
         })
         })
