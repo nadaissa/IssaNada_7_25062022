@@ -29,6 +29,8 @@ function Login() {
             })
         .then((user) => {
             //creating a token cookie to use in authentification headers on feed page
+            console.log(user.data);
+            console.log(user.data.message);
             Axios.create({
                 headers: {
                     'Cookie': Cookies.set(
@@ -37,7 +39,7 @@ function Login() {
                 {expires: 1},
                 { secure: true },
                 { sameSite: 'None'}
-                    )
+                )
                 }
             })
             //redirecting to the feed page with state values and unique userId params

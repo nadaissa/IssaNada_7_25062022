@@ -1,8 +1,5 @@
 header {
     @include flex-column-center;
-    //display: flex;
-    //flex: column nowrap;
-    //border: solid black;
     width: 100%;
     padding: 0;
     margin-bottom: 1rem;
@@ -11,17 +8,11 @@ header {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    //overflow: hidden;
-
-
 }
 
 .header-nav {
     @include flex-row-center;
-    //border: solid blue;
-    //display: flex;
     justify-content: space-between;
-    //gap: 5rem;
     height: 4rem;
     width: 100%;
     margin: 0;
@@ -31,7 +22,6 @@ header {
 
 .header-left {
     height: 100%;
-    //flex-grow: 1;  
     &__logo {
     height: 100%;
     width: 11rem;
@@ -40,65 +30,21 @@ header {
     }
 }
 
-/*.header-center{
-    flex: 4;
-    &__searchBar{
-        width: 100%;
-        height: 1rem;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-    }
-    
-    &__icon{
-        color: map-get($identity-colors, secondary);
-        @include txt-sz-wght (medium-bold);
-        margin-right: 5px;
-
-    }
-
-    &__input{
-        width: 50%;
-    }
-
-
-}*/
-
-
 .header-right{
     @include flex-row-center;
     @include link-state;
-    //border: solid pink;
     padding-right: 0.4rem;
     margin-right: 0.4rem;
-    //flex-grow: 4;
-    //justify-self: flex-end;
       
     &__links{
-        //@include flex-row-center;
         display: flex;
         justify-content: space-evenly;
         gap: 1rem;
         height: 100%;
         width: 100%;
-        /*@include mob-land-screen {
-            @include flex-column-center
-            margin-top: 15rem;
-            height: 15rem;
-            width: 5rem;
-            padding: 1rem;
-            background-color: map-get($identity-colors, tertiary);
-            visibility: hidden;            
-        }*/ 
     }
-    /*&__links-show{
-        @include mob-land-screen {
-        visibility: visible;
-       }
-    }*/
     
     &__link{
-        //margin-right: 2rem;
         cursor: pointer;
     }
     
@@ -117,20 +63,3 @@ header {
     }
 
 }
-
-
-/*.header-icons{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    &__icon{
-        margin-left: 10px;
-        align-self: flex-end;
-    }
-
-}
-
-.header-profil{
-    width: 32px;
-    height: 32px;
-}*/

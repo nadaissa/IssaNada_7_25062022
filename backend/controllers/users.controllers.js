@@ -30,8 +30,6 @@ exports.signup = (req, res, next) => {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     bio: req.body.bio,
-                    //picture: req.body.picture,
-                    //picture: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
                     admin: req.body.admin
 
                 })
@@ -134,39 +132,6 @@ exports.getOneUser = (req, res, next) => {
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
 };
-
-//user infos modification function export to be used in routes file
-/*exports.modifyUser = (req, res, next) => {
-    User.findByPk(
-        req.params.id,
-        {
-        attributes: {
-            exclude: [
-                'password',
-                'email'
-            ]
-        }
-    }
-        )
-    .then(user =>{
-     const userObject = req.file ?
-     { 
-       ...JSON.parse(req.body.user),
-       picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-     } : {...req.body};
- 
-     if(user.id === req.token.userId) {
-       User.update({...userObject, id: req.params.id}, { where: {id: req.params.id }})
-       .then(() => res.status(200).json({ message: 'Votre profil est modifié !'}))
-       .catch(error => res.status(400).json({ error }));
-     } else {
-       res.status(403).json({ error: "Vous ne pouvez pas modifier ce profil"})
-     }
-    }) 
-     .catch(error => res.status(500).json({ error }));  
-   };*/
-
-
 
 
 

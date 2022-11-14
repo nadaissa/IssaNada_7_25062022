@@ -8,16 +8,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 
-//setting authorization for forms
-const formAuthorizationHeader = {
-    headers: {
-    'Content-Type': 'multipart/form-data',
-    'Authorization': `Bearer ${Cookies.get('token')}`
-    },
-    transformeRequest: formData => formData
-}
-
-
 //setting the share compoment to display on the feed page
 function Publish() {
     const Navigate = useNavigate('');
@@ -35,7 +25,13 @@ function Publish() {
 
         await Axios.post('http://localhost:3001/api/posts',
             formData,
-            formAuthorizationHeader
+            {
+                headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${Cookies.get('token')}`
+                },
+                transformeRequest: formData => formData
+            }
 
         )
         .then((response) => {

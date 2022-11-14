@@ -117,21 +117,3 @@ exports.getAllPosts = (req, res, next) => {
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json({ error }));
 };
-
-/*
- include: [
-      {
-      model: User,
-      attributes : ['firstName', 'picture']
-    },
-    {
-      model: Like,
-    }]
-
-
-
-    include: {
-      model: User,
-      attributes : ['firstName', 'picture']
-    }
-*/

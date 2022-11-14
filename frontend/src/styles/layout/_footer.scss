@@ -1,6 +1,5 @@
 footer{
     @include flex-column-center;
-    //@include txt-sz-wght(big-bold);
     width: 100%;
     background-color: map-get($identity-colors, tertiary);
     border-top: solid map-get($other-colors, primary-s);
@@ -17,8 +16,6 @@ footer{
     @include link-state;
     
     &__link{
-        //margin-right: 2rem;
-        //flex-basis: 2rem;
         cursor: pointer;
     }
 }

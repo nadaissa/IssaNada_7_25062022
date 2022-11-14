@@ -1,10 +1,6 @@
 .home-parags{
     width: auto;
     @include flex-column-center;
-    /*display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: stretch;*/
     &__h2 {
         align-self: flex-start;
     }

@@ -4,69 +4,47 @@
     border-radius: 0.5rem;
     -webkit-box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
     box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
-    /*box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.68);*/
     @include flex-column-center;
     gap: 1.5rem;
     color: map-get($identity-colors, tertiary); 
-    //align-items: flex-start;
-    //border: solid rosybrown 2px;
     border: solid 0.1rem map-get($other-colors, secondary-s );
     @include desk-screen {
         max-width:500px;
     }
-    /*display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: stretch;*/
     &__top {
-        
         width: 100%;
         height: 40%;
         display: flex;
-        
         padding: 0;
-        //justify-content: space-between;
         justify-content: space-between;
         align-self: flex-start;
-        //border: solid 2px blue;
     }
     &__topLeft{
         display: flex;
     }
     &__profileImg{
-        //border: solid 2px black;
         -webkit-box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
         box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
         border: solid 0.1rem map-get($other-colors, secondary-s );
-        //background-color: map-get($other-colors, tertiary-s );
         border-radius: 20%;
         width: 4rem;
         height: 4rem;
         object-fit: cover;
-        
     }
     &__firstName, &__lastName {
         @include txt-sz-wght (medium-bold);
         align-self: flex-end;
         margin-left: 0.5rem;
         margin-right: 0rem;
-        //border: solid 2px black;
     }
     &__topRight{
-        //border: solid blue 1px;
         display: flex;
         align-self: flex-end;
         padding: 0;
     }
     &__date{
         @include txt-sz-wght (medium-normal);
-        //margin-left: 5rem;
-        //margin-right: 0;
         align-self: flex-end;
-        
-        //border: solid 2px black;
-       
     }
 
 
@@ -76,29 +54,22 @@
         width: 100%;
         @include flex-column-center;
         gap: 0.5rem;
-        //border: solid 2px red;
-        
     }
 
     &__content{
         align-self: flex-start;
-        //border: solid blue 2px;
     }
 
     &__media{
-        //border: solid blue 2px;
         border-radius: 0.5rem;
         object-fit: cover;
         max-width: 75%;
         max-height: 50%;
     }
 
-
-
     &__bottom{
         height: 10%;
         width: 100%;
-        //border: solid 2px green;
         @include txt-sz-wght(medium-bold);
         display: flex;
         justify-content: flex-end;
@@ -112,17 +83,13 @@
 }
 
 .modifyarea{
-    //border: solid 2px green;
     align-self: stretch;
     &__form{
-        //border: black solid;
         display: flex;
         flex-direction: column;
-        
         gap: 0.3rem;
     }
     &__group{
-        //border: solid pink;
         display: flex;
         flex-direction: column;
         gap: 0.1rem;

@@ -14,14 +14,7 @@ const likesRoutes = require('./routes/likes.router');
 const db = require("./models");
 
 //database sync test
-/*db.sequelize.sync()
-  .then(() => {
-    console.log("Synced db.");
-  })
-  .catch((err) => {
-    console.log("Failed to sync db: " + err.message);
-  });*/
-  db.sequelize
+db.sequelize
   .authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
@@ -29,16 +22,6 @@ const db = require("./models");
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-  //database query tests
-  //db.sequelize.query("SELECT * FROM `posts`").then( e => {
-    //console.log(e);
-  //});
-  //db.sequelize.query(
-    //"INSERT INTO `users` (`email`, `password`, `first_name`, `last_name`, `admin`) VALUES ('testmail@gmail.com', 'testpass12&', 'test_n', 'test_l', true)").then( e => {
-    //console.log(e);
-  //});
-
-
 
 
 //Instantiate server app

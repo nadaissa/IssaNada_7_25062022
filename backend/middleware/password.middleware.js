@@ -16,7 +16,7 @@ passwordSchema
 //password validation function
 module.exports = (req, res, next) =>{
     if (!passwordSchema.validate(req.body.password)){
-       res.status(400).json({ message: "Votre mot de pass n'est pas valide!"});
+       res.status(400).json({ message: "Votre mot de passe n'est pas valide!"});
     } else {
         next();
     };
