@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 
 function Signup() {
+    //setting the initial states for the form filling
     const Navigate = useNavigate('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -13,6 +14,7 @@ function Signup() {
        const userSignup = async (e) =>
        {
         e.preventDefault();
+        //calling the post method with axios and validating the form values
         await Axios.post(
             'http://localhost:3001/api/auth/signup', 
             {
@@ -23,9 +25,8 @@ function Signup() {
                 
             })
             .then((response) => {
-                console.log(response.data.message);
-                console.log(response);
                 alert(response.data.message);
+                //redirecting to login page
                 Navigate('/login');
             })
             .catch((error) => {

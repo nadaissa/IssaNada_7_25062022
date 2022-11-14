@@ -10,7 +10,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [errorMessage, setError] = useState('');
   
-    
+    //setting the axios post order to send form data on login
     const userLogin = async (e) =>
     {
         e.preventDefault();
@@ -26,12 +26,9 @@ function Login() {
                     
             },
             
-            //withCredentials: true
-            
             })
         .then((user) => {
-            console.log(user.data);
-            console.log(user.data.message);
+            //creating a token cookie to use in authentification headers on feed page
             Axios.create({
                 headers: {
                     'Cookie': Cookies.set(
@@ -39,17 +36,18 @@ function Login() {
                 user.data.token,
                 {expires: 1},
                 { secure: true },
-                { sameSite: 'None' }
+                { sameSite: 'None'}
                     )
                 }
             })
-
-            Navigate(`/Feed/${user.data.firstName}`,
+            //redirecting to the feed page with state values and unique userId params
+            Navigate(`/Feed/${user.data.userId}`,
                 {
                     state:{
-                        id: parseFloat(user.data.userId),
-                        admin: (user.data.admin)
-         } 
+                        userId: parseFloat(user.data.userId),
+                        firstName: user.data.firstName,
+                        admin: user.data.admin
+         }
         })
         })
         .catch((error) => {

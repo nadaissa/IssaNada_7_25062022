@@ -10,6 +10,7 @@ function Feed() {
     const [posts, setPosts] = useState('');
     //const [errorMessage, setError] = useState('');
     
+    //getting all posts from backend
     const getAllPosts = async ()=> {
     
         await Axios.get('http://localhost:3001/api/posts',  
@@ -38,10 +39,13 @@ function Feed() {
 
        }, []);
        
+       //importing the share content to the feed page
+       //and then displaying the post by importing a map using the post compoment already defined when user is logged in
     return (
         <div className="feed" aria-label="contenu principal">
           
           <h1 className="feed__h1" aria-label="flux des posts">Voici l'actualité de tes collègues!</h1>
+
           <Publish/>
           <>
             

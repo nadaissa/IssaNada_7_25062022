@@ -3,16 +3,27 @@ import Axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
+
+//setting authorization for forms
+const formAuthorizationHeader = {
+    headers: {
+    'Content-Type': 'multipart/form-data',
+    'Authorization': `Bearer ${Cookies.get('token')}`
+    },
+    transformeRequest: formData => formData
+}
+
+
+//setting the share compoment to display on the feed page
 function Publish() {
     const Navigate = useNavigate('');
     const [postContent, setPostContent] = useState('');
     const [postMedia, setPostMedia] = useState('');
-    //const [userId, setUserId] = useState('');
-    const Params = useParams();
+    const location = useLocation();
 
     const publishPost = async (e) => {
         e.preventDefault();
@@ -20,40 +31,15 @@ function Publish() {
         const formData = new FormData();
         formData.append('postContent', postContent);
         formData.append('postMedia', postMedia);
-        formData.forEach((value, key) => {
-            console.log(key + " " + value)
-        })
-        //formData.append('userId', userId);
+        
 
         await Axios.post('http://localhost:3001/api/posts',
-        
-        /*{
-            postContent: postContent,
-            postMedia: postMedia
-        },*/
-
-        formData,
-        {
-            headers: {
-            'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${Cookies.get('token')}`
-            },
-            
-            //withCredentials: true,
-
-            transformeRequest: formData => formData
-        
-        
-            }
-            
+            formData,
+            formAuthorizationHeader
 
         )
         .then((response) => {
-            //formData.forEach((value, key) => { console.log(key + "__" + value) })
-            //setUserId(response.data.userId);
-            //console.log(response.data.message);
-            console.log(response);
-            //Navigate('/Feed')
+            alert(response.data.message);
             window.location.reload();
         })
         .catch((error) =>{
@@ -64,6 +50,7 @@ function Publish() {
     
     }
 
+    //setting the logout function and redirect to login page
     const logout = async (e) => {
         e.preventDefault();
         await Axios.get('http://localhost:3001/api/auth/logout')            
@@ -83,7 +70,7 @@ function Publish() {
         <div className="publish" >
             <div className="publish__top">
                 <img className="publish__profileImg" src="" alt=""/>
-                <span className="publish__firstName">Bonjour {Params.id}</span>
+                <span className="publish__firstName">Bonjour {location.state.firstName}</span>
                 <span className="publish__logoutIcon">
                 
                 <FontAwesomeIcon 

@@ -23,7 +23,7 @@ exports.createPost = async (req, res, next) => {
   }
   catch (error) {
       if (req.file)
-          await fs.unlink(`images/${req.file.filename}`);
+        await fs.unlink(`images/${req.file.filename}`);
       console.error(error);
       res.status(500).json({message: "Internal server error"});
   }
@@ -35,14 +35,25 @@ exports.modifyPost = (req, res, next) => {
    .then(post =>{
     const postObject = req.file ?
     { 
-      ...JSON.parse(req.body.post),
+      //...JSON.parse(req.body.post),
+      postContent: req.body.postContent,
       postMedia: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body};
 
     if(post.userId === req.token.userId || req.token.admin === true) {
-      Post.update({...postObject, id: req.params.id}, { where: {id: req.params.id }})
-      .then(() => res.status(200).json({ message: 'Votre post est modifié !'}))
-      .catch(error => res.status(400).json({ error }));
+      if(req.file){
+        const filename = post.postMedia.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () =>{
+          Post.update({...postObject, id: req.params.id}, { where: {id: req.params.id }})
+          .then(() => res.status(200).json({ message: 'Votre post est modifié !'}))
+          .catch(error => res.status(400).json({ error }));
+        })
+      }else{
+        Post.update({...postObject, id: req.params.id}, { where: {id: req.params.id }})
+          .then(() => res.status(200).json({ message: 'Votre post est modifié !'}))
+          .catch(error => res.status(400).json({ error }));
+      }
+      
     } else {
       res.status(403).json({ error: "Vous ne pouvez pas modifier ce post"})
     }

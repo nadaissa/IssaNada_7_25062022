@@ -5,16 +5,32 @@ import Axios from 'axios';
 import { useState } from "react";
 import Cookies from "js-cookie";
 import Moment from 'moment';
-import { useNavigate } from 'react-router';
 import { useLocation } from "react-router-dom";
 
-
+//setting authorization header
+const authorizationHeader = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Cookies.get('token')}`
+    }
+};
+//setting authorization for forms
+const formAuthorizationHeader = {
+    headers: {
+    'Content-Type': 'multipart/form-data',
+    'Authorization': `Bearer ${Cookies.get('token')}`
+    }
+}
 
 
 function Post ({ post }) {
+
     const location = useLocation();
-    const Navigate = useNavigate('');
-    const [like, setLike] = useState('')
+
+   //setting the like function
+    
+    const [like, setLike] = useState('');
+       
     const likePost = async (e) => {
         
         e.preventDefault();
@@ -25,25 +41,14 @@ function Post ({ post }) {
         await Axios.post(`http://localhost:3001/api/likes/${post.id}/like`,
         
         formData,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Cookies.get('token')}`
-                 },
-            
-            
-            //withCredentials: true
-
-        }
+        authorizationHeader
         
         )
         .then((response) => {
-            //console.log(response.data.message);
             setLike(response);
             alert(response.data.message);
-            console.log(response)
             window.location.reload();
-            console.log("liked: " + response.data.liked);
+            //console.log("liked: " + response.data.liked);
            
 
         })
@@ -53,24 +58,15 @@ function Post ({ post }) {
         
     }
 
-    /*const deletePost = async (e) => {
+    //setting the delete function
+    const deletePost = async (e) => {
         e.preventDefault();
 
         await Axios.delete(`http://localhost:3001/api/posts/${post.id}`,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${Cookies.get('token')}`
-                 },
-            
-            
-            //withCredentials: true
-
-        }
+            authorizationHeader
         )
         .then((response) => {
-            //console.log(response.data.message);
-            console.log(response)
+            //console.log(response)
             window.location.reload();
 
         })
@@ -81,127 +77,103 @@ function Post ({ post }) {
 
     }
 
-    const getPost = async ()=> {
-        await Axios.get(`http://localhost:3001/api/posts/${post.id}`,  
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${Cookies.get('token')}`
-                     },
-                
-                
-                //withCredentials: true
-    
-            })
-        .then((response) => {
-
-            Navigate(
-                `/Modify/${post.id}`,
-                {
-                    state:{
-                        id: `${post.id}`,
-                        postContent: `${post.postContent}`,
-                        postMedia: `${post.postMedia}`
-                 }
-            });
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-            //setError(error.response.data.message);
-        })
-    }*/
    
-    
-    const DisplayBtns = () => {
-        
-        const deletePost = async (e) => {
-            e.preventDefault();
-    
-            await Axios.delete(`http://localhost:3001/api/posts/${post.id}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${Cookies.get('token')}`
-                     },
-                
-                
-                //withCredentials: true
-    
-            }
-            )
-            .then((response) => {
-                //console.log(response.data.message);
-                console.log(response)
-                window.location.reload();
-    
-            })
-            .catch((error) =>{
-                console.log(error);
-                alert(error.response.data.error)
-            })
-    
-        }
-    
-        const getPost = async ()=> {
-            await Axios.get(`http://localhost:3001/api/posts/${post.id}`,  
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${Cookies.get('token')}`
-                         },
-                    
-                    
-                    //withCredentials: true
-        
-                })
-            .then((response) => {
-    
-                Navigate(
-                    `/Modify/${post.id}`,
-                    {
-                        state:{
-                            id: `${post.id}`,
-                            postContent: `${post.postContent}`,
-                            postMedia: `${post.postMedia}`
-                     }
-                });
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-                //setError(error.response.data.message);
-            })
-        }
-
-        const postUser = post.userId;
-        const currentUser = location.state.id;
-        const isAdmin = location.state.admin;
-
-       if(postUser === currentUser || isAdmin === true){
-        return (
-            <>
-            <button className='post__modify'
-            onClick={getPost}
-            >
-            Modifier</button>
-
-        <button 
-        className='post__delete'
-        type="submit"
-        onClick={deletePost}
-        >
-        Supprimer
-        </button>
-        </>
+   
+   //setting the initiale state of the post object for modification
+    const [postObject, setPostObject] = useState({
+            postContent : post.postContent,
+            postMedia: post.postMedia,
+        })
+    //setting the state change handling for post texte content
+    function handleContentChange(e){
+        postObject.postContent = e.target.value;
+    }
+     //setting the state change handling for post image content
+    function handleMediaChange(e){
+        postObject.postMedia = e.target.files[0];
+    }
+    //defining the modification function
+    const modifyPost = async (e) => {
+        e.preventDefault();
+        await Axios.put(`http://localhost:3001/api/posts/${post.id}`,
+        {
+            ...postObject
+        },
+        formAuthorizationHeader
         )
-           } else {
+        .then((response) => {
+            alert(response.data.message)
+            window.location.reload();
+            //console.log(response);
+            //console.log(postObject)
+            setPostObject({
+                postContent: response.target.value,
+                postMedia: response.target.files[0]
+            });
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+    }
+    
+    //Setting the modification display compoment only for connected user or admin
+    const DisplayModDiv = () =>{
+        //defining the current post user
+        const postUser = post.userId;
+        //defining the connected user by getting the login state values
+        const currentUser = location.state.userId;
+        //defining the admin status by getting it from the login state values
+        const isAdmin = location.state.admin;
+        //setting the condition to display modification form
+        if(postUser === currentUser || isAdmin === true){
             return (
-                <></>
-              
-              )
-            }
+                <div className="modifyarea" >
+                <form className="modifyarea__form">
+                    <div className="modifyarea__group">
+                        <label htmlFor="postContent" className="modifyarea__label">Changer votre texte?</label>
+                        <textarea 
+                        className="modifyarea__textarea"
+                        placeholder="Changez votre texte"
+                        id="postContent"
+                        type="text"
+                        defaultValue={postObject.postContent}
+                        onChange={handleContentChange}
+                        name="postContent"
+                        />
+                    </div>
+                    <div className="modifyarea__group modifyarea__img-area">
+                        <label htmlFor="postMedia" className="modifyarea__label">Changer votre image?</label>
+                        <input 
+                        className="modifyarea__image modifyarea__input"
+                        id="postMedia" 
+                        type="file" 
+                        name="postMedia" 
+                        accept="image/*"
+                        multiple
+                        onChange={handleMediaChange}
+                        />
+                    </div>
+                    <div className='modifyarea__btnsDiv'>
+                    <button 
+                    className="modifyarea__modifyBtn" 
+                    type="submit"
+                    onClick={modifyPost}
+                    >
+                    Modifier
+                    </button>
+                    <button 
+                    className='modifyarea__deleteBtn'
+                    type="submit"
+                    onClick={deletePost}
+                    >
+                    Supprimer
+                    </button>
+                    </div>
+                </form>
+                </div>
+            )
         }
+    } 
         
     
     return (
@@ -222,8 +194,7 @@ function Post ({ post }) {
                 <img className="post__media" src={post?.postMedia} alt="" crossOrigin=""/>
             </div>
             <div className="post__bottom">
-           <DisplayBtns/>
-                
+                          
                 
                 <span className="post__likeIcon">
                     <FontAwesomeIcon 
@@ -236,6 +207,7 @@ function Post ({ post }) {
                 <span className="like__counter">{post?.Likes.length}</span>
                 
             </div>
+            <DisplayModDiv/>
         </div>
     )
 }

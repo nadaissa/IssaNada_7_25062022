@@ -109,15 +109,58 @@
         fill: none;
     }
 
-    &__modify{
+}
+
+.modifyarea{
+    //border: solid 2px green;
+    align-self: stretch;
+    &__form{
+        //border: black solid;
+        display: flex;
+        flex-direction: column;
+        
+        gap: 0.3rem;
+    }
+    &__group{
+        //border: solid pink;
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+    &__label{
+        @include txt-sz-wght(smaller-bold);
+        color: map-get($identity-colors, tertiary);
+    }
+    &__input{
+        @include txt-sz-wght(smaller-normal);
+        border: solid 0.2rem map-get($identity-colors, secondary);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+    &__textarea{
+        @include txt-sz-wght(smaller-normal);
+        color: map-get($other-colors, tertiary-s);
+        border: solid 0.2rem map-get($identity-colors, secondary);
+        border-radius: 0.5rem;
+    }
+
+    &__btnsDiv{
+        display: flex;
+        flex-direction: row;
+        gap: 0.2rem;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+        
+    &__modifyBtn{
     @include common-button;
-    @include txt-sz-wght(small-normal);
+    @include txt-sz-wght(smaller-normal);
     width: 5rem;
     }
 
-    &__delete{
+    &__deleteBtn{
         @include common-button;
-        @include txt-sz-wght(small-normal);
+        @include txt-sz-wght(smaller-normal);
         background-color: map-get($other-colors, secondary-s);
         width: 5rem;
     }
