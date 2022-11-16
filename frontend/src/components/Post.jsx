@@ -67,6 +67,7 @@ function Post ({ post }) {
         )
         .then((response) => {
             //console.log(response)
+            window.confirm("Supprimer votre poste?")
             window.location.reload();
 
         })
@@ -102,7 +103,8 @@ function Post ({ post }) {
         formAuthorizationHeader
         )
         .then((response) => {
-            alert(response.data.message)
+            window.confirm("Soumettre les modifications?")
+            //alert(response.data.message)
             window.location.reload();
             //console.log(response);
             //console.log(postObject)
@@ -185,7 +187,7 @@ function Post ({ post }) {
                     <span className="post__lastName">{post?.User.lastName}</span>
                 </div>
                 <div className="post__topRight">
-                    <span className="post__date">{Moment(post?.createdAt).format('L')}</span>
+                    <span className="post__date">{Moment(post?.createdAt).format('D.M.YYYY')}</span>
                 </div>
                 
             </div>
