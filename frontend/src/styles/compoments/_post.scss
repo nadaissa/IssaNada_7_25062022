@@ -84,6 +84,8 @@
 
 .modifyarea{
     align-self: stretch;
+    border-top: solid 2px map-get($identity-colors, primary);
+    padding-top: 1rem;
     &__form{
         display: flex;
         flex-direction: column;
@@ -106,7 +108,7 @@
     }
     &__textarea{
         @include txt-sz-wght(smaller-normal);
-        color: map-get($other-colors, tertiary-s);
+        color: map-get($identity-colors, tertiary);
         border: solid 0.2rem map-get($identity-colors, secondary);
         border-radius: 0.5rem;
     }
@@ -128,7 +130,8 @@
     &__deleteBtn{
         @include common-button;
         @include txt-sz-wght(smaller-normal);
-        background-color: map-get($other-colors, secondary-s);
+        color: map-get($other-colors, light);
+        background-color: map-get($identity-colors, tertiary);
         width: 5rem;
     }
 }

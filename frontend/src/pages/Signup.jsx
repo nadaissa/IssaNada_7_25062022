@@ -45,7 +45,7 @@ function Signup() {
                         <input 
                             className="login-area__input" 
                             id="firstName" 
-                            name="fistName" 
+                            name="firstName" 
                             type="text" 
                             size="30" 
                             onChange={(event) => 

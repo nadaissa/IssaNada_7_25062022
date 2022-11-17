@@ -6,6 +6,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import Moment from 'moment';
 import { useLocation } from "react-router-dom";
+import userIcon from '../assets/images/fencer.png'
 
 //setting authorization header
 const authorizationHeader = {
@@ -58,6 +59,7 @@ function Post ({ post }) {
         
     }
 
+
     //setting the delete function
     const deletePost = async (e) => {
         e.preventDefault();
@@ -67,7 +69,8 @@ function Post ({ post }) {
         )
         .then((response) => {
             //console.log(response)
-            window.confirm("Supprimer votre poste?")
+            //console.log(response)
+            alert(response.data.message)
             window.location.reload();
 
         })
@@ -103,8 +106,8 @@ function Post ({ post }) {
         formAuthorizationHeader
         )
         .then((response) => {
-            window.confirm("Soumettre les modifications?")
-            //alert(response.data.message)
+            
+            alert(response.data.message)
             window.location.reload();
             //console.log(response);
             //console.log(postObject)
@@ -132,7 +135,7 @@ function Post ({ post }) {
                 <div className="modifyarea" >
                 <form className="modifyarea__form">
                     <div className="modifyarea__group">
-                        <label htmlFor="postContent" className="modifyarea__label">Changer votre texte?</label>
+                        <label htmlFor="postContent" className="modifyarea__label">Modifier ton texte?</label>
                         <textarea 
                         className="modifyarea__textarea"
                         placeholder="Changez votre texte"
@@ -144,13 +147,14 @@ function Post ({ post }) {
                         />
                     </div>
                     <div className="modifyarea__group modifyarea__img-area">
-                        <label htmlFor="postMedia" className="modifyarea__label">Changer votre image?</label>
+                        <label htmlFor="postMedia" className="modifyarea__label">Modifier ton image?</label>
                         <input 
                         className="modifyarea__image modifyarea__input"
                         id="postMedia" 
                         type="file" 
                         name="postMedia" 
                         accept="image/*"
+                        crossOrigin=""
                         multiple
                         onChange={handleMediaChange}
                         />
@@ -161,7 +165,7 @@ function Post ({ post }) {
                     type="submit"
                     onClick={modifyPost}
                     >
-                    Modifier
+                    Soumettre
                     </button>
                     <button 
                     className='modifyarea__deleteBtn'
@@ -182,7 +186,7 @@ function Post ({ post }) {
         <div className="post" >
             <div className="post__top">
                 <div className="post__topLeft">
-                    <img className="post__profileImg" src={post?.User.picture} alt={post.User.fristName} crossOrigin=""/>
+                    <img className="post__profileImg" src={userIcon} alt={post.User.firstName} crossOrigin=""/>
                     <span className="post__firstName">{post?.User.firstName}</span>
                     <span className="post__lastName">{post?.User.lastName}</span>
                 </div>
@@ -196,8 +200,6 @@ function Post ({ post }) {
                 <img className="post__media" src={post?.postMedia} alt="" crossOrigin=""/>
             </div>
             <div className="post__bottom">
-                          
-                
                 <span className="post__likeIcon">
                     <FontAwesomeIcon 
                         icon={faThumbsUp}

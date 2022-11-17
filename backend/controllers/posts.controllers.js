@@ -91,6 +91,7 @@ exports.getOnePost = (req, res, next) => {
       },
       {
         model: Like,
+
       }]
     }
     )
@@ -111,8 +112,9 @@ exports.getAllPosts = (req, res, next) => {
       attributes : ['id', 'firstName', 'lastName', 'picture']
     },
     {
-      model: Like,
-    }]
+      model: Like
+    }],
+   
   })
     .then(post => res.status(200).json(post))
     .catch(error => res.status(400).json({ error }));

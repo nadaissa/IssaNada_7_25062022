@@ -5,7 +5,7 @@
     -webkit-box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
     box-shadow: 5px 5px 5px map-get($identity-colors, tertiary);
     @include flex-column-center;
-    gap: 0.5rem;
+    gap: 0.8rem;
     color: map-get($identity-colors, tertiary); 
     border: solid 0.2rem map-get($identity-colors, secondary);
     @include desk-screen {
@@ -44,7 +44,7 @@
 
     &__icon{
         @include icons;
-        color: map-get($identity-colors, tertiary);
+        color: map-get($identity-colors, primary);
     }
 
     &__bottom{

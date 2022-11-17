@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { useLocation } from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
-
+import userIcon from '../assets/images/fencer.png'
 
 //setting the share compoment to display on the feed page
 function Publish() {
@@ -65,7 +65,7 @@ function Publish() {
     return (
         <div className="publish" >
             <div className="publish__top">
-                <img className="publish__profileImg" src="" alt=""/>
+                <img className="publish__profileImg" src={userIcon} alt={location.state.firstName} crossOrigin=""/>
                 <span className="publish__firstName">Bonjour {location.state.firstName}</span>
                 <span className="publish__logoutIcon">
                 
@@ -80,10 +80,10 @@ function Publish() {
             </div>
             <form className="publish__bottom publish__form">
                 <div className="publish__group publish__text-area">
-                    <label htmlFor="postContent publish___label"></label>
+                    <label htmlFor="postContent" className="publish___label">Une pensée?</label>
                     <input 
                     className="publish__content"
-                    placeholder="Une pensée?"
+                    placeholder="Ton texte ici"
                     id="postContent"
                     type="text"
                     name="postContent"
@@ -93,13 +93,14 @@ function Publish() {
                     />
                 </div>
                 <div className="publish__group publish___img-area">
-                    <label htmlFor="postMedia publish___label">Une image?</label>
+                    <label htmlFor="postMedia" className= "publish___label">Une image?</label>
                     <input 
                     className="publish__image"
                     id="postMedia" 
                     type="file" 
                     name="postMedia" 
                     accept="image/*"
+                    crossOrigin=""
                     multiple
                     onChange={(event) =>
                         {setPostMedia(event.target.files[0])}
