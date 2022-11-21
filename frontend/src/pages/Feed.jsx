@@ -8,8 +8,7 @@ import Cookies from "js-cookie";
 
 function Feed() {
     const [posts, setPosts] = useState('');
-    //const [errorMessage, setError] = useState('');
-    
+
     //getting all posts from backend
     const getAllPosts = async ()=> {
     
@@ -20,9 +19,6 @@ function Feed() {
                     'Authorization': `Bearer ${Cookies.get('token')}`
                      },
                 
-                
-                //withCredentials: true
-
             })
         .then((response) => {
             
@@ -31,7 +27,6 @@ function Feed() {
         })
         .catch((error) => {
             console.log(error);
-            //setError(error.response.data.message);
         })
        }
        useEffect(( ) => {
@@ -46,13 +41,13 @@ function Feed() {
           
           <h1 className="feed__h1" aria-label="flux des posts">Voici l'actualité de tes collègues!</h1>
 
-          <Publish/>
+          <Publish getAllPosts={getAllPosts}/>
           <>
             
             {posts ?
                 posts.map(post => {
                     return(
-                    <Post key={post.id} post={post}/>
+                    <Post key={post.id} post={post} getAllPosts={getAllPosts}/>
                     )
                 }) : <h2>Tu dois te connecter pour poster et accéder au fil</h2>
             }

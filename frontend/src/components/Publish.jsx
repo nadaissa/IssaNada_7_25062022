@@ -9,7 +9,7 @@ import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import userIcon from '../assets/images/fencer.png'
 
 //setting the share compoment to display on the feed page
-function Publish() {
+function Publish({ getAllPosts}) {
     const Navigate = useNavigate('');
     const [postContent, setPostContent] = useState('');
     const [postMedia, setPostMedia] = useState('');
@@ -34,9 +34,8 @@ function Publish() {
             }
 
         )
-        .then((response) => {
-            alert(response.data.message);
-            window.location.reload();
+        .then(() => {
+            getAllPosts();
         })
         .catch((error) =>{
             console.log(error);
