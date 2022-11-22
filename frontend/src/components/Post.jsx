@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import Moment from 'moment';
 import userIcon from '../assets/images/fencer.png'
 import DisplayModDiv from './Modify';
-
+import {LazyLoadImage} from 'react-lazy-load-image-component'
 
 function Post ({ post, getAllPosts}) {
 
@@ -48,7 +48,7 @@ function Post ({ post, getAllPosts}) {
         <div className="post" >
             <div className="post__top">
                 <div className="post__topLeft">
-                    <img className="post__profileImg" src={userIcon} alt={post.User.firstName} crossOrigin=""/>
+                    <LazyLoadImage className="post__profileImg" src={userIcon} alt={post.User.firstName} crossOrigin=""/>
                     <span className="post__firstName">{post?.User.firstName}</span>
                     <span className="post__lastName">{post?.User.lastName}</span>
                 </div>
@@ -59,7 +59,7 @@ function Post ({ post, getAllPosts}) {
             </div>
             <div className="post__center">
                 <span className="post__content">{post?.postContent}</span>
-                <img className="post__media" src={post?.postMedia} alt="" crossOrigin=""/>
+                <LazyLoadImage className="post__media" src={post?.postMedia} alt="" crossOrigin="" loading='lazy'/>
             </div>
             <div className="post__bottom">
                 <span className="post__likeIcon">
