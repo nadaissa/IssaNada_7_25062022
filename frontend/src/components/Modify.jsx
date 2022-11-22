@@ -32,39 +32,35 @@ const DisplayModDiv = ({post, getAllPosts}) =>{
 
     }
 
-//setting the initiale state of the post object for modification
-const [postObject, setPostObject] = useState({
-    postContent : post.postContent,
-    postMedia: post.postMedia,
-})
-//setting the state change handling for post texte content
-function handleContentChange(e){
-postObject.postContent = e.target.value;
-}
-//setting the state change handling for post image content
-function handleMediaChange(e){
-postObject.postMedia = e.target.files[0];
-}
+
+//setting the initiale state of the post for modification
+const [postContent, setPostContent] = useState('');
+const [postMedia, setPostMedia] = useState('');
+
+
 //defining the modification function
 const modifyPost = async (e) => {
 e.preventDefault();
+
+const formData = new FormData();
+        formData.append('postContent', postContent);
+        formData.append('postMedia', postMedia);
+
+
 await Axios.put(`http://localhost:3001/api/posts/${post.id}`,
-{
-    ...postObject
-},
+
+formData,
 {
     headers: {
     'Content-Type': 'multipart/form-data',
     'Authorization': `Bearer ${Cookies.get('token')}`
-    }
+    },
+    transformeRequest: formData => formData
 }
 )
 .then((response) => {
     getAllPosts();
-    setPostObject({
-        postContent: response.target.value,
-        postMedia: response.target.files[0]
-    });
+    console.log(response);
 })
 .catch((error) =>{
     console.log(error);
@@ -94,8 +90,10 @@ if(postUser === currentUser || isAdmin === true){
                 placeholder="Changez votre texte"
                 id="postContent"
                 type="text"
-                defaultValue={postObject.postContent}
-                onChange={handleContentChange}
+                defaultValue={post.postContent}
+                onChange={(event) => 
+                    {setPostContent(event.target.value)}
+                }
                 name="postContent"
                 />
             </div>
@@ -109,7 +107,9 @@ if(postUser === currentUser || isAdmin === true){
                 accept="image/*"
                 crossOrigin=""
                 multiple
-                onChange={handleMediaChange}
+                onChange={(event) => {
+                    setPostMedia(event.target.files[0])
+                }}
                 />
             </div>
             <div className='modifyarea__btnsDiv'>

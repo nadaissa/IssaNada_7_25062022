@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 function Feed() {
     const [posts, setPosts] = useState('');
-
+    
     //getting all posts from backend
     const getAllPosts = async ()=> {
     
@@ -40,7 +40,7 @@ function Feed() {
         <div className="feed" aria-label="contenu principal">
           
           <h1 className="feed__h1" aria-label="flux des posts">Voici l'actualité de tes collègues!</h1>
-
+    
           <Publish getAllPosts={getAllPosts}/>
           <>
             
