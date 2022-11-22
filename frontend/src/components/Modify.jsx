@@ -34,8 +34,8 @@ const DisplayModDiv = ({post, getAllPosts}) =>{
 
 
 //setting the initiale state of the post for modification
-const [postContent, setPostContent] = useState('');
-const [postMedia, setPostMedia] = useState('');
+const [postContent, setPostContent] = useState(post.postContent);
+const [postMedia, setPostMedia] = useState(post.postMedia);
 
 
 //defining the modification function
