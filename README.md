@@ -13,18 +13,25 @@
 
 ### Connection pages:
 :busts_in_silhouette: Create a user account with minimum info :white_check_mark:
+
 :unlock: Login with an email and a password :white_check_mark:
+
 :lock: Possibility to logout :white_check_mark:
+
 :key: Connection data must be secure :white_check_mark:
 
 ### Feed page:
 :page_facing_up: List of the posts created by users :white_check_mark:
+
 :arrow_down: Reverse chronological order listing :white_check_mark:
 
 ### Share operation:
 :pencil2: Create a post with text and/or image :white_check_mark:
+
 :pencil:  Modify a post (by creator or admin) :white_check_mark:
+
 :x: Delete a post (by creator or admin) :white_check_mark:
+
 :+1: Like a post (only once) :white_check_mark:
 
 ### Admin account:
@@ -42,10 +49,12 @@ bcrypt, cors, dotenv, email-validator, express, express-rate-limit, fs, helmet, 
 - Front-end:
 axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-load-image-component, react-router, react-router-dom, react-scripts
 
-### Install and setup your database - this project was conceived with MySQL (see the official MySQL documentation for installation and you can use MySQL Workbench to an easier management of your DB)
-- The database contains 3 principle tables:
+### Install and setup your database - this project was conceived with MySQL (see the official MySQL documentation for installation and you can use MySQL Workbench for an easier management of your DB)
+- The database schema contains 3 principle tables:
 :pushpin: users: id, email, password, firstName, lastName, bio, picture, admin, createdAt, updatedAt
+
 :pushpin: posts: id, userId, postContent, postMedia, createdAt, updatedAt 
+
 :pushpin: likes: id, postId, userId, createdAt, updatesAt 
 
 - the ORM used to manage the API connection with the DB is Sequelize [ see below to transfer the models of the DB]
@@ -60,7 +69,7 @@ axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-lo
 - DB_PASSWORD:"your database password"
 - DB_NAME_DEV: "your database name in dev mode"
 - DB_NAME_TEST: "your database name in test mode" (if necessary)
-- DB_NAME_PROD: "your database name in test mode" (if necessary)
+- DB_NAME_PROD: "your database name in prod mode" (if necessary)
 - SECRET_TOKEN: "your database password generated secret token"
 
 3- Run  `yarn add`
@@ -69,7 +78,7 @@ axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-lo
 
 4- Run `node server` or `nodemon server` 
 
-**Note: the server port depends on the sequelize db configurantion file, the alternative back-end port is '3001'
+**Note: the server port depends on the sequelize db configurantion file, the alternative back-end server port is '3001'
 
 
 
