@@ -3,59 +3,76 @@ import Axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
+import { useContext } from "react";
+import LoginContext from "../contexts/LoginContext";
 
-function Login() {
+
+const Login = () => {
+    const {setLoginAuth} = useContext(LoginContext);
     const Navigate = useNavigate('');
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setError] = useState('');
+    
   
     //setting the axios post order to send form data on login
     const userLogin = async (e) =>
     {
         e.preventDefault();
-        await Axios.post(
-            'http://localhost:3001/api/auth/login',
-            {
-                email: email,
-                password: password,
-            },
-            {
-                headers: { 
-                    "Content-Type": "application/json"
-                    
-            },
-            
-            })
-        .then((user) => {
-            //creating a token cookie to use in authentification headers on feed page
-            console.log(user.data);
-            console.log(user.data.message);
-            Axios.create({
-                headers: {
-                    'Cookie': Cookies.set(
-                    'token', 
-                user.data.token,
-                {expires: 1},
-                { secure: true },
-                { sameSite: 'None'}
-                )
-                }
-            })
-            //redirecting to the feed page with state values and unique userId params
-            Navigate(`/Feed/${user.data.userId}`,
+        
+        try{
+           const user = await Axios.post(
+                'http://localhost:3001/api/auth/login',
                 {
-                    state:{
-                        userId: parseFloat(user.data.userId),
-                        firstName: user.data.firstName,
-                        admin: user.data.admin
-         }
-        })
-        })
-        .catch((error) => {
+                    email: email,
+                    password: password,
+                },
+                {
+                    headers: { 
+                        "Content-Type": "application/json"
+                        
+                },
+                
+                })
+
+                console.log(user.data);
+                console.log(user.data.message);
+    
+                const userId = parseFloat(user.data.userId);
+                const firstName = user.data.firstName;
+                const admin = user.data.admin
+                        
+                                
+                            
+               setLoginAuth(
+                    loginAuth => ({
+                        ...loginAuth,
+                        userId: userId,
+                        firstName: firstName,
+                        admin: admin
+                    }))
+                    
+    
+                Axios.create({
+                    headers: {
+                        'Cookie': Cookies.set(
+                        'token', 
+                    user.data.token,
+                    {expires: 1},
+                    { secure: true },
+                    { sameSite: 'None'}
+                    )
+                    }
+                })
+    
+                //redirecting to the feed page with state values and unique userId params
+                //Navigate(`/Feed/${user.data.userId}`)
+                Navigate('/Feed')
+        }catch(error){
             console.log(error)
-            setError(error.response.data.message);
-        })
+            setError(error);
+        }
     }
 
     return (

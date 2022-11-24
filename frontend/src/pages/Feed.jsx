@@ -1,13 +1,16 @@
 import React from "react";
+
+/*
 import Post from "../components/Post";
 import Publish from "../components/Publish"
 import { useState, useEffect } from "react";
 import Axios from 'axios';
-import Cookies from "js-cookie";
-
+import Cookies from "js-cookie";*/
+import { useContext } from "react";
+import LoginContext from "../contexts/LoginContext";
 
 function Feed() {
-    const [posts, setPosts] = useState('');
+    /*const [posts, setPosts] = useState('');
     
     //getting all posts from backend
     const getAllPosts = async ()=> {
@@ -32,7 +35,9 @@ function Feed() {
        useEffect(( ) => {
         getAllPosts();
 
-       }, []);
+       }, []);*/
+       const {loginAuth} = useContext(LoginContext);
+       
        
        //importing the share content to the feed page
        //and then displaying the post by importing a map using the post compoment already defined when user is logged in
@@ -40,8 +45,17 @@ function Feed() {
         <div className="feed" aria-label="contenu principal">
           
           <h1 className="feed__h1" aria-label="flux des posts">Voici l'actualité de tes collègues!</h1>
-    
-          <Publish getAllPosts={getAllPosts}/>
+        <p>{loginAuth.userId}</p>
+        <p>{loginAuth.firstName}</p>
+        <p>{loginAuth.admin}</p>
+           
+        </div>
+        )
+}
+
+export default Feed;
+
+/*<Publish getAllPosts={getAllPosts}/>
           <>
             
             {posts ?
@@ -52,9 +66,4 @@ function Feed() {
                 }) : <h2>Tu dois te connecter pour poster et accéder au fil</h2>
             }
            </>
-           
-        </div>
-    )
-}
-
-export default Feed;
+          */
