@@ -2,13 +2,13 @@ import React from "react";
 import Axios from "axios";
 import { useState } from "react";
 import Cookies from 'js-cookie';
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 
 
 
 //Setting the modification display compoment only for connected user or admin
-const DisplayModDiv = ({post, getAllPosts}) =>{
-    const location = useLocation();
+const DisplayModDiv = ({post, getAllPosts, loginAuth}) =>{
+    //const location = useLocation();
 
      //setting the delete function
      const deletePost = async (e) => {
@@ -75,11 +75,11 @@ formData,
 //defining the current post user
 const postUser = post.userId;
 //defining the connected user by getting the login state values
-const currentUser = location.state.userId;
+const currentUser = loginAuth.userId;
 //defining the admin status by getting it from the login state values
-const isAdmin = location.state.admin;
+const isAdmin = loginAuth.admin;
 //setting the condition to display modification form
-if(postUser === currentUser || isAdmin === true){
+if(postUser === currentUser || isAdmin === 'true'){
     return (
         <div className="modifyarea" >
         <form className="modifyarea__form">

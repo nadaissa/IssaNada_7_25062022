@@ -9,7 +9,7 @@ import userIcon from '../assets/images/fencer.png'
 import DisplayModDiv from './Modify';
 import {LazyLoadImage} from 'react-lazy-load-image-component'
 
-function Post ({ post, getAllPosts}) {
+function Post ({ post, getAllPosts, loginAuth}) {
 
     
    
@@ -73,7 +73,7 @@ function Post ({ post, getAllPosts}) {
                 <span className="like__counter">{post?.Likes.length}</span>
                 
             </div>
-            <DisplayModDiv post={post} getAllPosts={getAllPosts}/>
+            <DisplayModDiv post={post} getAllPosts={getAllPosts} loginAuth={loginAuth}/>
         </div>
     )
 }

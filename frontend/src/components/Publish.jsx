@@ -3,17 +3,17 @@ import Axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import userIcon from '../assets/images/fencer.png'
 
 //setting the share compoment to display on the feed page
-function Publish({ getAllPosts}) {
+function Publish({ getAllPosts, loginAuth}) {
     const Navigate = useNavigate('');
     const [postContent, setPostContent] = useState('');
     const [postMedia, setPostMedia] = useState('');
-    const location = useLocation();
+    //const location = useLocation();
 
     const publishPost = async (e) => {
         e.preventDefault();
@@ -51,6 +51,7 @@ function Publish({ getAllPosts}) {
         await Axios.get('http://localhost:3001/api/auth/logout')            
         .then((response) => {
             Cookies.remove('token');
+            localStorage.clear();
             console.log(response);
             Navigate('/login')
         })
@@ -64,8 +65,8 @@ function Publish({ getAllPosts}) {
     return (
         <div className="publish" >
             <div className="publish__top">
-                <img className="publish__profileImg" src={userIcon} alt={location.state.firstName} crossOrigin=""/>
-                <span className="publish__firstName">Bonjour {location.state.firstName}</span>
+                <img className="publish__profileImg" src={userIcon} alt={loginAuth.firstName} crossOrigin=""/>
+                <span className="publish__firstName">Bonjour {loginAuth.firstName}</span>
                 <span className="publish__logoutIcon">
                 
                 <FontAwesomeIcon 

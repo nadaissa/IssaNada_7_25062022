@@ -7,6 +7,8 @@ import { useContext } from "react";
 import LoginContext from "../contexts/LoginContext";
 
 
+
+
 const Login = () => {
     const {setLoginAuth} = useContext(LoginContext);
     const Navigate = useNavigate('');
@@ -43,16 +45,18 @@ const Login = () => {
                 const firstName = user.data.firstName;
                 const admin = user.data.admin
                         
-                                
+                
+              
+                               
                             
-               setLoginAuth(
+
+                 setLoginAuth(
                     loginAuth => ({
                         ...loginAuth,
-                        userId: userId,
-                        firstName: firstName,
-                        admin: admin
+                        userId: localStorage.setItem('userId', userId),
+                        firstName:  localStorage.setItem('firstName', firstName),
+                        admin:  localStorage.setItem('admin', admin)
                     }))
-                    
     
                 Axios.create({
                     headers: {
@@ -73,7 +77,9 @@ const Login = () => {
             console.log(error)
             setError(error);
         }
+     
     }
+
 
     return (
         <div className="main-content-wrapper" aria-label="contenu principal">
