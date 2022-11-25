@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "../components/Post";
-import Publish from "../components/Publish"
+import Publish from "../components/Publish";
 import Axios from 'axios';
 import Cookies from "js-cookie";
 
-import { useContext } from "react";
-import LoginContext from "../contexts/LoginContext";
+
+
 
 function Feed() {
     const [posts, setPosts] = useState('');
@@ -31,49 +30,35 @@ function Feed() {
             console.log(error);
         })
        }
-       useEffect(( ) => {
+    useEffect(( ) => {
         getAllPosts();
 
-       }, []);
+    }, []);
        
-       /*const [currentUserId, setCurrentUserId] = useState('');
-       const [currentUserFirstName, setCurrentUserFirstName] = useState('');
-       const [currentUserAdmin, setCurrentUserAdmin] = useState('');
-
-       setCurrentUserId(localStorage.getItem('userId'))
-       setCurrentUserFirstName(localStorage.getItem('firstName'))
-       setCurrentUserAdmin(localStorage.getItem('admin'))*/
-       const {loginAuth, setLoginAuth} = useContext(LoginContext);
-       
- 
-    const getStoredInfo = async () => { 
-        await setLoginAuth({
+      //getting the userInfo stored in localStorage after singin 
+      
+      
+      const userConnected = {
         userId: parseFloat(localStorage.getItem('userId')),
         firstName:  localStorage.getItem('firstName'),
         admin:  localStorage.getItem('admin')
-    })
-}
+    }
+      
 
     
-    useEffect(( ) => {
-      getStoredInfo()
- 
-        }, [])
-
-    
-       //importing the share content to the feed page
-       //and then displaying the post by importing a map using the post compoment already defined when user is logged in
+    //importing the share content to the feed page
+    //and then displaying the post by importing a map using the post compoment already defined when user is logged in
     return (
         <div className="feed" aria-label="contenu principal">
           
           <h1 className="feed__h1" aria-label="flux des posts">Voici l'actualité de tes collègues!</h1>
-          <Publish getAllPosts={getAllPosts} loginAuth={loginAuth}/>
+          <Publish getAllPosts={getAllPosts} loginAuth={userConnected}/>
           <>
             
             {posts ?
                 posts.map(post => {
                     return(
-                    <Post key={post.id} post={post} getAllPosts={getAllPosts} loginAuth={loginAuth}/>
+                    <Post key={post.id} post={post} getAllPosts={getAllPosts} loginAuth={userConnected}/>
                     )
                 }) : <h2>Tu dois te connecter pour poster et accéder au fil</h2>
             }
@@ -84,10 +69,3 @@ function Feed() {
 }
 
 export default Feed;
-
-/*
-          */
-
-           /*<p>{loginAuth.userId}</p>
-        <p>{loginAuth.firstName}</p>
-        <p>{loginAuth.admin}</p>*/

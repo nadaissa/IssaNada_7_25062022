@@ -2,8 +2,8 @@ import React from "react";
 import logo from "../assets/images/icon-left-font-monochrome-white.svg";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowRightToBracket, faHouse,faUserPlus /*faBars,faUserPlus, faSun*/} from '@fortawesome/free-solid-svg-icons';
-/*import {useState} from "react";*/
+import {faArrowRightToBracket, faHouse,faUserPlus} from '@fortawesome/free-solid-svg-icons';
+
 
 function Header() {
    

@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
-import { useContext } from "react";
 import LoginContext from "../contexts/LoginContext";
 
 
@@ -23,8 +21,7 @@ const Login = () => {
     {
         e.preventDefault();
         
-        try{
-           const user = await Axios.post(
+       await Axios.post(
                 'http://localhost:3001/api/auth/login',
                 {
                     email: email,
@@ -37,46 +34,43 @@ const Login = () => {
                 },
                 
                 })
-
-                console.log(user.data);
-                console.log(user.data.message);
+                .then((response) => {
+                    console.log(response.data);
+                    console.log(response.data.message);
+        
+                //setting the properties for storing the connected user using the setState of the LoginContext
+                const userId = parseFloat(response.data.userId);
+                const firstName = response.data.firstName;
+                const admin = response.data.admin
     
-                const userId = parseFloat(user.data.userId);
-                const firstName = user.data.firstName;
-                const admin = user.data.admin
-                        
-                
-              
-                               
-                            
-
-                 setLoginAuth(
+                setLoginAuth(
                     loginAuth => ({
                         ...loginAuth,
                         userId: localStorage.setItem('userId', userId),
                         firstName:  localStorage.setItem('firstName', firstName),
                         admin:  localStorage.setItem('admin', admin)
-                    }))
+                    })
+                )
     
                 Axios.create({
                     headers: {
                         'Cookie': Cookies.set(
                         'token', 
-                    user.data.token,
+                    response.data.token,
                     {expires: 1},
                     { secure: true },
                     { sameSite: 'None'}
                     )
                     }
                 })
-    
-                //redirecting to the feed page with state values and unique userId params
-                //Navigate(`/Feed/${user.data.userId}`)
+        
+                //redirecting to the feed page
                 Navigate('/Feed')
-        }catch(error){
+                })
+                .catch((error) => {
             console.log(error)
-            setError(error);
-        }
+            setError(error.response.data.message);
+        })
      
     }
 

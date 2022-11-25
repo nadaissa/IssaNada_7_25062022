@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState }  from "react";
 import Axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
-//import { useLocation } from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import userIcon from '../assets/images/fencer.png'
@@ -13,7 +11,6 @@ function Publish({ getAllPosts, loginAuth}) {
     const Navigate = useNavigate('');
     const [postContent, setPostContent] = useState('');
     const [postMedia, setPostMedia] = useState('');
-    //const location = useLocation();
 
     const publishPost = async (e) => {
         e.preventDefault();
@@ -36,6 +33,7 @@ function Publish({ getAllPosts, loginAuth}) {
         )
         .then(() => {
             getAllPosts();
+            
         })
         .catch((error) =>{
             console.log(error);
@@ -61,7 +59,14 @@ function Publish({ getAllPosts, loginAuth}) {
 
 
     }
+
     
+    //defining the connected user by getting the login state values
+    const currentUser = loginAuth.userId;
+    //defining the admin status by getting it from the login state values
+    const isAdmin = loginAuth.admin;
+    //setting the condition to display modification form
+    if(currentUser || isAdmin === 'true'){
     return (
         <div className="publish" >
             <div className="publish__top">
@@ -80,11 +85,11 @@ function Publish({ getAllPosts, loginAuth}) {
             </div>
             <form className="publish__bottom publish__form">
                 <div className="publish__group publish__text-area">
-                    <label htmlFor="postContent" className="publish___label">Une pensée?</label>
+                    <label htmlFor="publish__postContent" className="publish___label">Une pensée?</label>
                     <input 
                     className="publish__content"
                     placeholder="Ton texte ici"
-                    id="postContent"
+                    id="publish__postContent"
                     type="text"
                     name="postContent"
                     onChange={(event) => 
@@ -93,10 +98,10 @@ function Publish({ getAllPosts, loginAuth}) {
                     />
                 </div>
                 <div className="publish__group publish___img-area">
-                    <label htmlFor="postMedia" className= "publish___label">Une image?</label>
+                    <label htmlFor="publish__postMedia" className= "publish___label">Une image?</label>
                     <input 
                     className="publish__image"
-                    id="postMedia" 
+                    id="publish__postMedia" 
                     type="file" 
                     name="postMedia" 
                     accept="image/*"
@@ -117,6 +122,7 @@ function Publish({ getAllPosts, loginAuth}) {
             
         </div>
     )
+}
 }
 
 

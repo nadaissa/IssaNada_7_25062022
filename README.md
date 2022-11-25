@@ -50,6 +50,8 @@ bcrypt, cors, dotenv, email-validator, express, express-rate-limit, fs, helmet, 
 axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-load-image-component, react-router, react-router-dom, react-scripts
 
 ### Install and setup your database - this project was conceived with MySQL (see the official MySQL documentation for installation and you can use MySQL Workbench for an easier management of your DB)
+- A dump with the DB structure or both DB structure and content will be provided by email
+
 - The database schema contains 3 principle tables:
 :pushpin: users: id, email, password, firstName, lastName, bio, picture, admin, createdAt, updatedAt
 
@@ -60,10 +62,9 @@ axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-lo
 - the ORM used to manage the API connection with the DB is Sequelize [ see below to transfer the models of the DB]
 
 ### From within the back-end folder provided 
-
 1- Inside the main folder create an "images" folder
 
-2- Inside the main folder create an ".env" file and define the environnement variables:
+2- Inside the main folder create an ".env" file and define these environnement variables:
 
 - DB_USERNAME: "your database username"
 - DB_PASSWORD:"your database password"
@@ -72,7 +73,7 @@ axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-lo
 - DB_NAME_PROD: "your database name in prod mode" (if necessary)
 - SECRET_TOKEN: "your database password generated secret token"
 
-3- Run  `yarn add`
+3- Run  `yarn install`
 
 5- Run `yarn sequelize-cli db:migrate`
 
@@ -83,9 +84,7 @@ axios, js-cookie, moment, node-sass, prop-types, react, react-dom, react-lazy-lo
 
 
 ### From within the front-end folder provided
-1- Run `yarn add`
-
-2- Install React
+1- Run `yarn install`
 
 3- Follow these front-end readme file instructions:
 

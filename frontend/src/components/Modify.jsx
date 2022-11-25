@@ -1,14 +1,12 @@
-import React from "react";
+import React,  { useState }  from "react";
 import Axios from "axios";
-import { useState } from "react";
 import Cookies from 'js-cookie';
-//import { useLocation } from "react-router-dom";
 
 
 
 //Setting the modification display compoment only for connected user or admin
 const DisplayModDiv = ({post, getAllPosts, loginAuth}) =>{
-    //const location = useLocation();
+ 
 
      //setting the delete function
      const deletePost = async (e) => {
@@ -84,11 +82,11 @@ if(postUser === currentUser || isAdmin === 'true'){
         <div className="modifyarea" >
         <form className="modifyarea__form">
             <div className="modifyarea__group">
-                <label htmlFor="postContent" className="modifyarea__label">Modifier ton texte?</label>
+                <label htmlFor="modifyarea__postContent" className="modifyarea__label">Modifier ton texte?</label>
                 <textarea 
                 className="modifyarea__textarea"
                 placeholder="Changez votre texte"
-                id="postContent"
+                id="modifyarea__postContent"
                 type="text"
                 defaultValue={post.postContent}
                 onChange={(event) => 
@@ -98,10 +96,10 @@ if(postUser === currentUser || isAdmin === 'true'){
                 />
             </div>
             <div className="modifyarea__group modifyarea__img-area">
-                <label htmlFor="postMedia" className="modifyarea__label">Modifier ton image?</label>
+                <label htmlFor="modifyarea__postMedia" className="modifyarea__label">Modifier ton image?</label>
                 <input 
                 className="modifyarea__image modifyarea__input"
-                id="postMedia" 
+                id="modifyarea__postMedia" 
                 type="file" 
                 name="postMedia" 
                 accept="image/*"

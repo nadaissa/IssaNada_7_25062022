@@ -4,7 +4,7 @@ const userCtrl = require('../controllers/users.controllers');
 const passCheck = require('../middleware/password.middleware');
 const emailCheck = require('../middleware/email.middleware');
 const auth = require('../middleware/auth.middleware');
-const limiter = require('../middleware/rateLimiter')
+const limiter = require('../middleware/rateLimiter');
 
 //router creation, router methods for signing and loging
 const router = express.Router();
